@@ -1,3 +1,21 @@
+<?php
+
+include_once('../config.php');
+session_start();
+
+if(isset($_SESSION['USER'])){
+  if($_SESSION['USER']['FK_UserType'] == 1){
+    redirectWindow("/pos/Controllers/Admin");
+  }
+  else if($_SESSION['USER']['FK_UserType'] == 2){
+    redirectWindow("/pos/Controllers/Manager");
+  }
+  else if($_SESSION['USER']['FK_UserType'] == 3){
+    redirectWindow("/pos/Controllers/Employee");
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

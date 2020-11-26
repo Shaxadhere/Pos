@@ -76,7 +76,7 @@ else{
           <li class="nav-label mg-t-25">Features</li>
           <li class="nav-item"><a href="products" class="nav-link"><i data-feather="package"></i> <span>Products</span></a></li>
           <li class="nav-item"><a href="sales" class="nav-link"><i data-feather="activity"></i> <span>Sales</span></a></li>
-          <li class="nav-item"><a href="rams" class="nav-link"><i data-feather="book"></i> <span>Stocks</span></a></li>
+          <li class="nav-item"><a href="stocks" class="nav-link"><i data-feather="book"></i> <span>Stocks</span></a></li>
          </ul>
       </div>
     </aside>

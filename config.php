@@ -1,5 +1,7 @@
 <?php
 
+$_ROOT = $_SERVER['HTTP_HOST']."/pos";
+
 // default database connection method
 function connect(){
     define("server", "localhost");

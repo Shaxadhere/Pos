@@ -7,22 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../../assets/template/assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/pos/assets/template/assets/img/favicon.png">
 
     <title></title>
 
     <!-- vendor css -->
-    <link href="../../assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="../../assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../../assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="/pos/assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/pos/assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/pos/assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
 
     <!-- DashForge CSS -->
-    <link rel="stylesheet" href="../../assets/template/assets/css/dashforge.css">
-    <link rel="stylesheet" href="../../assets/template/assets/css/dashforge.dashboard.css">
+    <link rel="stylesheet" href="/pos/assets/template/assets/css/dashforge.css">
+    <link rel="stylesheet" href="/pos/assets/template/assets/css/dashforge.dashboard.css">
 
     <!--datatables-->
-    <link href="../../assets/template/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="../../assets/template/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="/pos/assets/template/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/pos/assets/template/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
     
   </head>
   <body>
@@ -38,7 +38,7 @@
       <div class="aside-body">
         <div class="aside-loggedin">
           <div class="d-flex align-items-center justify-content-start">
-            <a href="#loggedinMenu" data-toggle="collapse" class="avatar"><img src="../../Uploads/avatar.jpg" class="rounded-circle" alt=""></a>
+            <a href="#loggedinMenu" data-toggle="collapse" class="avatar"><img src="/pos/Uploads/avatar.jpg" class="rounded-circle" alt=""></a>
           </div>
           <div class="aside-loggedin-user">
             <a href="#loggedinMenu" class="d-flex align-items-center justify-content-between mg-b-2" data-toggle="collapse">

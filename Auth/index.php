@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../assets/template/assets/img/favicon.png">
 
-    <title>Login - Financo</title>
+    <title>Login - PointOfSale</title>
 
     <!-- vendor css -->
     <link href="../assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -22,19 +22,19 @@
   <body>
 
     <header class="navbar navbar-header navbar-header-fixed">
-      <a href="page-signin.html#" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
+      <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
       <div class="navbar-brand">
-        <a href="../index" class="df-logo">Fin<span>anco</span></a>
+        <a href="" class="df-logo">PointOf<span>Sale</span></a>
       </div><!-- navbar-brand -->
       <div id="navbarMenu" class="navbar-menu-wrapper">
         <div class="navbar-menu-header">
-          <a href="../index" class="df-logo">Fin<span>anco</span></a>
-          <a id="mainMenuClose" href="page-signin.html"><i data-feather="x"></i></a>
+          <a href="" class="df-logo">PointOf<span>Sale</span></a>
+          <a id="mainMenuClose" href=""><i data-feather="x"></i></a>
         </div><!-- navbar-menu-header -->
       </div><!-- navbar-menu-wrapper -->
-      <div class="navbar-right">
+      <!-- <div class="navbar-right">
         <a href="../Purchase" class="btn btn-buy"><i data-feather="shopping-bag"></i> <span>Purchase</span></a>
-      </div><!-- navbar-right -->
+      </div>navbar-right -->
     </header><!-- navbar -->
 
     <div class="content content-fixed content-auth">
@@ -56,6 +56,15 @@
               <div class="form-group">
                 <label>Email address</label>
                 <input type="email" name="email" class="form-control" placeholder="yourname@yourmail.com">
+                <?php
+                if(isset($_GET['email'])){
+                  $error = $_GET['email'];
+                  echo "<span style='color:red;font-size: 11px;'>";
+                  echo $error;
+                  echo "</span>";
+                }
+                ?>
+                
               </div>
               <div class="form-group">
                 <div class="d-flex justify-content-between mg-b-5">
@@ -63,6 +72,14 @@
                   <a href="forgotPassword" class="tx-13">Forgot password?</a>
                 </div>
                 <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                <?php
+                if(isset($_GET['password'])){
+                  $error = $_GET['password'];
+                  echo "<span style='color:red;font-size: 11px;'>";
+                  echo $error;
+                  echo "</span>";
+                }
+                ?>
               </div>
               <input name="login" type="submit" class="btn btn-brand-02 btn-block" value="Sign In" />
               </form>
@@ -71,8 +88,8 @@
 
 
 
-              <div class="divider-text">or</div>
-              <div class="tx-13 mg-t-20 tx-center">Don't have an account? <a href="../Purchase">Purchase now</a></div>
+              <!-- <div class="divider-text">or</div> -->
+              <!-- <div class="tx-13 mg-t-20 tx-center">Don't have an account? <a href="../Purchase">Purchase now</a></div> -->
             </div>
           </div><!-- sign-wrapper -->
         </div><!-- media -->
@@ -81,7 +98,7 @@
 
     <footer class="footer">
       <div>
-        <span>&copy; 2019 Financo All Rights Reserved </span>
+        <span>&copy; 2019 PointOfSale All Rights Reserved </span>
         <span>Created by <a href="muxad.com">Muxad.com</a></span>
       </div>
     </footer>

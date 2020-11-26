@@ -1,10 +1,11 @@
 create table if not EXISTS tbl_usertype
 (
 PK_ID int PRIMARY key AUTO_INCREMENT,
-UserTypeName varchar(50) not null,
+UserTypeName varchar(50) not null
 );
-
-
+INSERT INTO `tbl_usertype`(`UserTypeName`) VALUES ('Admin');
+INSERT INTO `tbl_usertype`(`UserTypeName`) VALUES ('Manager');
+INSERT INTO `tbl_usertype`(`UserTypeName`) VALUES ('Employee');
 
 create table if not EXISTS tbl_user
 (
@@ -12,10 +13,14 @@ PK_ID int PRIMARY KEY AUTO_INCREMENT,
 FullName varchar(50) not null,
 Email varchar(50) unique not null,
 ContactNumber varchar(50),
-Password varchar(50) not null,
+Password varchar(500) not null,
 FK_UserType int, 
 constraint FK_UserType foreign key(FK_UserType) references tbl_usertype(PK_ID)
 );
+INSERT INTO `tbl_user`(`FullName`, `Email`, `ContactNumber`, `Password`, `FK_UserType`) VALUES ('Shehzad Ahmed', 'sh@mail.com', '030303030', '123', 1);
+
+
+
 
 tbl_productcategory
 (
@@ -42,7 +47,7 @@ constraint FK_Category foreign key(FK_Category) references tbl_productcategory(P
 FK_Company int,
 constraint FK_Company foreign key(FK_Company) references tbl_productcompany(PK_ID),
 Image varchar(100),
-Features varchar(50),
+Features varchar(50)
 );
 
 
@@ -53,7 +58,7 @@ create table if not EXISTS tbl_stock
 PK_ID int PRIMARY key AUTO_INCREMENT,
 ProductID int,
 constraint FK_Product foreign key(FK_Product) references tbl_product(PK_ID),
-Quantity int default 0,
+Quantity int default 0
 );
 
 
@@ -84,6 +89,6 @@ PK_ID int PRIMARY key AUTO_INCREMENT,
 InvoiceID int,
 Invoice Date datetime,
 CustomerID int,
-constraint CustomerID foreign key(CustomerID) references tbl_customer(PK_ID),
+constraint CustomerID foreign key(CustomerID) references tbl_customer(PK_ID)
 
 );

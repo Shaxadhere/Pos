@@ -21,6 +21,10 @@ if(http_response_code() == 505){
     redirectWindow("/pos/errors/505");
 }
 
+if(http_response_code() == 401){
+    redirectWindow("/pos/errors/401");
+}
+
 
 
 ?>

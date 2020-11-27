@@ -17,7 +17,6 @@ Password varchar(500) not null,
 FK_UserType int, 
 constraint FK_UserType foreign key(FK_UserType) references tbl_usertype(PK_ID)
 );
-INSERT INTO `tbl_user`(`FullName`, `Email`, `ContactNumber`, `Password`, `FK_UserType`) VALUES ('Shehzad Ahmed', 'sh@mail.com', '030303030', '123', 1);
 
 
 

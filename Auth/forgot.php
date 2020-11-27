@@ -6,29 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Twitter -->
-    <meta name="twitter:site" content="@themepixels">
-    <meta name="twitter:creator" content="@themepixels">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DashForge">
-    <meta name="twitter:description" content="Responsive Bootstrap 4 Dashboard Template">
-    <meta name="twitter:image" content="http://themepixels.me/dashforge/img/dashforge-social.png">
-
-    <!-- Facebook -->
-    <meta property="og:url" content="http://themepixels.me/dashforge">
-    <meta property="og:title" content="DashForge">
-    <meta property="og:description" content="Responsive Bootstrap 4 Dashboard Template">
-
-    <meta property="og:image" content="http://themepixels.me/dashforge/img/dashforge-social.png">
-    <meta property="og:image:secure_url" content="http://themepixels.me/dashforge/img/dashforge-social.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="600">
-
-    <!-- Meta -->
-    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
-    <meta name="author" content="ThemePixels">
-
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.png">
 
@@ -136,7 +113,7 @@
 
     <footer class="footer">
       <div>
-        <span>&copy; 2019 DashForge v1.0.0. </span>
+        <span>&copy; <span id="year"></span> DashForge v1.0.0. </span>
         <span>Created by <a href="http://themepixels.me">ThemePixels</a></span>
       </div>
       <div>
@@ -159,24 +136,9 @@
     <script src="../../lib/js-cookie/js.cookie.js"></script>
     <script src="../../assets/js/dashforge.settings.js"></script>
     <script>
-      $(function(){
-        'use script'
-
-        window.darkMode = function(){
-          $('.btn-white').addClass('btn-dark').removeClass('btn-white');
-        }
-
-        window.lightMode = function() {
-          $('.btn-dark').addClass('btn-white').removeClass('btn-dark');
-        }
-
-        var hasMode = Cookies.get('df-mode');
-        if(hasMode === 'dark') {
-          darkMode();
-        } else {
-          lightMode();
-        }
-      })
+      var d = new Date();
+      var n = d.getFullYear();
+      document.getElementById("year").innerHTML = n;
     </script>
   </body>
 </html>

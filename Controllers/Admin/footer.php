@@ -12,10 +12,15 @@
     <script src="/pos/assets/template/lib/chart.js/Chart.bundle.min.js"></script>
     <script src="/pos/assets/template/lib/jqvmap/jquery.vmap.min.js"></script>
     <script src="/pos/assets/template/lib/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="/pos/assets/template/lib/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="/pos/assets/template/lib/cleave.js/cleave.min.js"></script>
+    <script src="/pos/assets/template/lib/cleave.js/addons/cleave-phone.us.js"></script>
+
 
     <script src="/pos/assets/template/assets/js/dashforge.js"></script>
     <script src="/pos/assets/template/assets/js/dashforge.aside.js"></script>
     <script src="/pos/assets/template/assets/js/dashforge.sampledata.js"></script>
+    
 
     <!-- append theme customizer -->
     <script src="/pos/assets/template/lib/js-cookie/js.cookie.js"></script>

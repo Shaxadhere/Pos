@@ -116,8 +116,7 @@ if(isset($_SESSION['USER'])){
 
     <footer class="footer">
       <div>
-        <span>&copy; 2019 PointOfSale All Rights Reserved </span>
-        <span>Created by <a href="muxad.com">Muxad.com</a></span>
+        <span>&copy; <span id="year"></span> PointOfSale All Rights Reserved </span>
       </div>
     </footer>
 
@@ -134,6 +133,11 @@ if(isset($_SESSION['USER'])){
     <!-- append theme customizer -->
     <script src="../assets/template/lib/js-cookie/js.cookie.js"></script>
     <script src="../assets/template/assets/js/dashforge.settings.js"></script>
+    <script>
+      var d = new Date();
+      var n = d.getFullYear();
+      document.getElementById("year").innerHTML = n;
+    </script>
 
   </body>
 </html>

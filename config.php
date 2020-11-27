@@ -1,6 +1,7 @@
 <?php
 
 $_ROOT = $_SERVER['HTTP_HOST']."/pos";
+$_HTMLROOTURI = "/pos";
 
 // default database connection method
 function connect(){

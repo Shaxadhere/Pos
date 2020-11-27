@@ -74,6 +74,7 @@ else{
           <li class="nav-item"><a href="index" class="nav-link"><i data-feather="home"></i> <span>Dashboard</span></a></li>
           
           <li class="nav-label mg-t-25">Features</li>
+          <li class="nav-item"><a href="customers" class="nav-link"><i data-feather="package"></i> <span>Customers</span></a></li>
           <li class="nav-item"><a href="products" class="nav-link"><i data-feather="package"></i> <span>Products</span></a></li>
           <li class="nav-item"><a href="sales" class="nav-link"><i data-feather="activity"></i> <span>Sales</span></a></li>
           <li class="nav-item"><a href="stocks" class="nav-link"><i data-feather="book"></i> <span>Stocks</span></a></li>

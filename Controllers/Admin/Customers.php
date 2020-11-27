@@ -32,10 +32,37 @@ if(isset($_GET['error'])){
 <h5 id="section4" class="mg-b-10">Customers</h5>
 
 
+<?php
+          
+if(isset($_GET['Success'])){
+  $Success = $_GET['Success'];
+}
+
+if(!empty($Success)){
+  echo "<div class='alert alert-success' id='alert'>";
+  echo "<button type='button' class='close' data-dismiss='alert'>x</button>";
+  echo "<strong>Success! </strong> $Success";
+  echo "</div>";
+}
+
+if(isset($_GET['Failure'])){
+  $Failure = $_GET['Failure'];
+}
+
+if(!empty($Failure)){
+  echo "<div class='alert alert-danger' id='alert'>";
+  echo "<button type='button' class='close' data-dismiss='alert'>x</button>";
+  echo "<strong>Failure! </strong> $Failure";
+  echo "</div>";
+}
+
+?>
+
 <a href="#addnew" data-toggle="modal" class="btn btn-sm btn-outline-primary">Add New Customer</a>
 
 <br><br>
 
+  <!--Table Starts-->
         <div data-label="Example" class="df-example demo-table">
           <table id="table" class="table">
             <thead>
@@ -57,18 +84,20 @@ if(isset($_GET['error'])){
                 echo "<td>".$row['City']."</td>";
                 echo "<td>".$row['Mobile']."</td>";
                 echo "<td>".$row['Email']."</td>";
-                echo "<td><button id='viewProduct' value='".$row['PK_ID']."' class='btn btn-xs btn-outline-info'>View</button></td>";
+                echo "<td><button value='".$row['PK_ID']."' class='btn btn-xs btn-outline-info viewCustomer'>View</button></td>";
                 echo "</tr>";
               }
               
               ?>
             </tbody>
           </table>
-        </div><!-- df-example -->
+        </div>
+
+        <!--Table End-->
 
 
 
-        <!--Add New Form-->
+        <!--Add New Form Start-->
 
       <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -86,8 +115,8 @@ if(isset($_GET['error'])){
 
           <?php
           
-          if(isset($_GET['CustomerName'])){
-            $error = $_GET['CustomerName'];
+          if(isset($_GET['error'])){
+            $error = $_GET['error'];
           }
 
           if(!empty($error)){
@@ -100,13 +129,29 @@ if(isset($_GET['error'])){
            <div class="form-group">
           <label>Customer Name</label>
           <input type="text" required="Customer Name is Required" name="CustomerName" class="form-control" id="CustomerName" placeholder="Ali Sethi.. etc">
-          </div>
+          <?php
+          
+          if(isset($_GET['CustomerName'])){
+            $CustomerName = $_GET['CustomerName'];
+            echo "<span for='error' style='color:red;font-size: 12px;'>$CustomerName</span>";
+          }
+          
+          ?>
+        </div>
 
           
         <div class="form-row">
           <div class="form-group col-md-12">
             <label>Address</label>
             <input type="text" required="Address is required" name="Address" class="form-control" placeholder="Suite, Apt..etc">
+            <?php
+          
+            if(isset($_GET['Address'])){
+              $Address = $_GET['Address'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$Address</span>";
+            }
+          
+          ?>
           </div>
         </div>
 
@@ -114,14 +159,38 @@ if(isset($_GET['error'])){
            <div class="form-group col-md-3">
             <label for="inputEmail4">State</label><br>
             <input id="theStates" type="text" required="State is required" name="State" class="form-control" placeholder="State">
+            <?php
+          
+            if(isset($_GET['State'])){
+              $State = $_GET['State'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$State</span>";
+            }
+          
+          ?>
           </div>
           <div class="form-group col-md-3">
             <label for="inputEmail4">City</label><br>
             <input id="theCities" type="text" required="City is required" name="City" class="form-control" placeholder="City">
+            <?php
+          
+            if(isset($_GET['City'])){
+              $City = $_GET['City'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$City</span>";
+            }
+          
+          ?>
           </div>
           <div class="form-group col-md-3">
             <label for="inputEmail4">Postal Code</label><br>
             <input id="PostalCode" type="text" required="Postal Code is required" name="PostalCode" class="form-control" placeholder="PostalCode">
+            <?php
+          
+            if(isset($_GET['PostalCode'])){
+              $PostalCode = $_GET['PostalCode'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$PostalCode</span>";
+            }
+          
+          ?>
           </div>
           <div class="form-group col-md-3">
             <label for="inputEmail4">Landmark</label><br>
@@ -133,10 +202,26 @@ if(isset($_GET['error'])){
            <div class="form-group col-md-4">
             <label for="inputEmail4">Email</label>
             <input type="email" name="Email" class="form-control" placeholder="abc@example.com">
+            <?php
+          
+            if(isset($_GET['Email'])){
+              $Email = $_GET['Email'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$Email</span>";
+            }
+          
+          ?>
           </div>
           <div class="form-group col-md-4">
             <label for="inputPassword4">Mobile</label>
             <input type="phone" required="Mobile is required" name="Mobile" class="form-control" placeholder="Mobile number">
+            <?php
+          
+            if(isset($_GET['Mobile'])){
+              $Mobile = $_GET['Mobile'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$Mobile</span>";
+            }
+          
+          ?>
           </div>
           <div class="form-group col-md-4">
             <label for="inputPassword4">Phone</label>
@@ -162,27 +247,51 @@ if(isset($_GET['error'])){
         </div>
       </div>
     </div>
+
+    <!--Add New Form Ends-->
     
-    <!-- <button id="view" href="#details" data-href="1" data-toggle="modal" class="btn btn-sm btn-outline-primary">View</button> -->
 
     <div id="modelForm"></div>
 
 <?php
 getFooter("footer.php");
 ?>
+
+<?php
+
+$alert = "";
+
+if(isset($_GET['Success'])){
+  $alert = $_GET['Success'];
+}
+
+if(isset($_GET['Failure'])){
+  $alert = $_GET['Failure'];
+}
+
+if(!empty($alert)){
+  echo "<script>";
+  echo "$(document).ready(function() {";
+  echo "$('#alert').fadeTo(2000, 500).slideUp(500, function() {";
+  echo "$('#alert').slideUp(500);";
+  echo "});";
+  echo "});";
+  echo "</script>";
+}
+
+?>
  <script> 
 
     $(document).ready(function () {
-      $("#view").click(function () {
+      $(".viewCustomer").click(function () {
         // Get he content from the input box
-        var uuid = 1
+        var uuid = this.value;
         $.ajax({
           type: "POST",
-          url: "viewProduct",
-          data: { uuid: uuid },
+          url: "CustomerView?uuid="+uuid,
           success: function (response) {
-            alert(response);
-            $('#modelForm').replaceWith(response);
+            $('#modelForm').empty();
+            $('#modelForm').append(response);
           },
           error: function (e) {
             alert(e); 
@@ -191,6 +300,8 @@ getFooter("footer.php");
       });
     });
 
+
+   
 
     /////////////////States/////////////////
     var substringMatcher = function(strs) {
@@ -286,7 +397,14 @@ getFooter("footer.php");
           searchPlaceholder: 'Search...',
           sSearch: '',
           lengthMenu: '_MENU_ items/page',
-        }
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
       });
     });
 

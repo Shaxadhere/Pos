@@ -1,14 +1,12 @@
 <?php
 include_once('../../config.php');
+include_once('../../Models/Admin/CustomersModel.php');
+
+$model = new CustomersModel();
 
 if(isset($_GET['uuid'])){
     $uuid = $_GET['uuid'];
-    $fetched = fetchDataById(
-        "tbl_customer",
-        "PK_ID",
-        $uuid,
-        connect()
-    );
+    $fetched = $model->View($uuid);
     $customer = mysqli_fetch_array($fetched);
 }
 ?>
@@ -22,11 +20,14 @@ if(isset($_GET['uuid'])){
             </button>
           </div>
           <div class="modal-body">
+              <form action="<?= $_HTMLROOTURI ?>/Models/Admin/Customers.php" method="post">
+              <input type="hidden" value="<?= $customer[0] ?>"
             <p class="mg-b-0"> <?= $customer[1] ?> </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary tx-13" data-dismiss="modal" onclick="window.location.reload()">Close</button>
-            <button type="button" class="btn btn-primary tx-13">Edit</button>
+            <input type="submit" name="editCustomer" class="btn btn-primary tx-13" value="Save Changes">
+            </form>
           </div>
         </div>
       </div>

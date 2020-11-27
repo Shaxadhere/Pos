@@ -1,14 +1,12 @@
 <?php
 include_once('../../config.php');
+include_once('../../Models/Admin/CustomersModel.php');
+
+$model = new CustomersModel();
 
 if(isset($_GET['uuid'])){
     $uuid = $_GET['uuid'];
-    $fetched = fetchDataById(
-        "tbl_customer",
-        "PK_ID",
-        $uuid,
-        connect()
-    );
+    $fetched = $model->View($uuid);
     $customer = mysqli_fetch_array($fetched);
 }
 ?>
@@ -25,8 +23,8 @@ if(isset($_GET['uuid'])){
             <p class="mg-b-0"> <?= $customer[1] ?> </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary tx-13" data-dismiss="modal" onclick="window.location.reload()">Close</button>
-            <button type="button" id="btnEdit" class="btn btn-primary tx-13 editCustomer">Edit</button>
+            <button type="button" id="btnDelete" class="btn btn-danger tx-13" data-dismiss="modal">Delete</button>
+            <button type="button" id="btnEdit" value="<?= $customer[0] ?>" class="btn btn-primary tx-13 editCustomer">Edit</button>
           </div>
         </div>
       </div>
@@ -39,6 +37,25 @@ if(isset($_GET['uuid'])){
 
     $(document).ready(function () {
       $("#btnEdit").click(function () {
+        $('#viewDetails').modal('hide');
+        // Get he content from the input box
+        var uuid = this.value;
+        $.ajax({
+          type: "POST",
+          url: "CustomerEdit?uuid="+uuid,
+          success: function (response) {
+            $('#modelForm').empty();
+            $('#modelForm').append(response);
+          },
+          error: function (e) {
+            alert(e); 
+          }
+        })
+      });
+    });
+
+    $(document).ready(function () {
+      $("#btnDelete").click(function () {
         $('#viewDetails').modal('hide');
         // Get he content from the input box
         var uuid = this.value;

@@ -41,17 +41,55 @@ class CustomersModel{
         );
     }
 
-
-    function View(){
-
+    function View($id){
+        return fetchDataById(
+            "tbl_customer",
+            "PK_ID",
+            $id,
+            connect()
+        );
     }
 
-    function Edit(){
-
+    function Edit($id, $customerName, $address, $postalCode, $landmark, $city, $state, $phone, $email, $fax, $mobile, $note){
+        editData(
+            "tbl_customer",
+            array(
+                "CustomerName",
+                $customerName,
+                "Address",
+                $address,
+                "PostalCode",
+                $postalCode,
+                "Landmark",
+                $landmark,
+                "City",
+                $city,
+                "Province",
+                $state,
+                "Phone",
+                $phone,
+                "Email",
+                $email,
+                "Fax",
+                $fax,
+                "Mobile",
+                $mobile,
+                "Note",
+                $note
+            ),
+            "PK_ID",
+            $id,
+            connect()
+        );
     }
 
-    function Delete(){
-
+    function Delete($id){
+        deleteDataById(
+            "tbl_customer",
+            "PK_ID",
+            $id,
+            connect()
+        );
     }
 }
 

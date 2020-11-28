@@ -37,7 +37,7 @@ if(isset($_GET['uuid'])){
 
     $(document).ready(function () {
       $("#btnEdit").click(function () {
-        $('#viewDetails').modal('hide');
+        $('#viewDetails').modal('toggle');
         // Get he content from the input box
         var uuid = this.value;
         $.ajax({

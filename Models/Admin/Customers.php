@@ -6,6 +6,7 @@ include_once('CustomersModel.php');
 
 $model = new CustomersModel();
 
+
 if(isset($_POST['addCustomer'])){
     $status = true;
     //Empty Strings Check

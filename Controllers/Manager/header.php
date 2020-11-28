@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['USER'])){
+  if($_SESSION['USER']['FK_UserType'] != 2){
+    http_response_code(401);
+  }
+}
+else{
+  redirectWindow("/pos/auth");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

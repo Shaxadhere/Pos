@@ -21,7 +21,7 @@ if(isset($_GET['uuid'])){
           </div>
           <div class="modal-body">
               <form action="<?= $_HTMLROOTURI ?>/Models/Admin/Customers.php" method="post">
-              <input type="hidden" value="<?= $customer[0] ?>"
+              <input type="hidden" value="<?= $customer[0] ?>"/>
             <p class="mg-b-0"> <?= $customer[1] ?> </p>
           </div>
           <div class="modal-footer">

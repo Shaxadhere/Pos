@@ -23,7 +23,7 @@ if(isset($_GET['uuid'])){
             <p class="mg-b-0"> <?= $customer[1] ?> </p>
           </div>
           <div class="modal-footer">
-            <button type="button" id="btnDelete" class="btn btn-danger tx-13" data-dismiss="modal">Delete</button>
+            <button type="button" id="btnDelete" value="<?= $customer[0] ?>" class="btn btn-danger tx-13" data-dismiss="modal">Delete</button>
             <button type="button" id="btnEdit" value="<?= $customer[0] ?>" class="btn btn-primary tx-13 editCustomer">Edit</button>
           </div>
         </div>
@@ -61,7 +61,7 @@ if(isset($_GET['uuid'])){
         var uuid = this.value;
         $.ajax({
           type: "POST",
-          url: "CustomerEdit?uuid="+uuid,
+          url: "CustomerDelete?uuid="+uuid,
           success: function (response) {
             $('#modelForm').empty();
             $('#modelForm').append(response);

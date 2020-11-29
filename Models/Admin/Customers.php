@@ -6,7 +6,7 @@ include_once('CustomersModel.php');
 
 $model = new CustomersModel();
 
-
+//////////////////Add Customer//////////////////////
 if(isset($_POST['addCustomer'])){
     $status = true;
     //Empty Strings Check
@@ -67,6 +67,7 @@ if(isset($_POST['addCustomer'])){
     }
 }
 
+////////////////Edit Customer////////////////////////
 if(isset($_POST['editCustomer'])){
     $status = true;
     //Empty Strings Check
@@ -128,6 +129,20 @@ if(isset($_POST['editCustomer'])){
     }
 }
 
+//////////////////Delete Customer//////////////////////
+if(isset($_POST['deleteCustomer'])){
+    $status= true;
+    if(empty($_POST['id'])){
+        $status = false;
+        http_response_code(400);
+    }
+    if($status){
+        $model->Delete($_POST['id']);
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Success=Customer Deleted Successfully");
+    }
+}
+
+include_once('../../errors/errors.php');
 
 
 ?>

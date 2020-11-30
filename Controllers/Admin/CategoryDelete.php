@@ -1,13 +1,13 @@
 <?php
 include_once('../../config.php');
-include_once('../../Models/Admin/CustomersModel.php');
+include_once('../../Models/Admin/CompanyModel.php');
 
-$model = new CustomersModel();
+$model = new CompanyModel();
 
 if(isset($_GET['uuid'])){
     $uuid = $_GET['uuid'];
     $fetched = $model->View($uuid);
-    $customer = mysqli_fetch_array($fetched);
+    $Company = mysqli_fetch_array($fetched);
 }
 ?>
 <div class="modal fade" id="deleteData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
@@ -20,13 +20,13 @@ if(isset($_GET['uuid'])){
             </button>
           </div>
           <div class="modal-body">
-            <p class="mg-b-0">Are you sure you want to delete <strong><?= $customer['CustomerName'] ?></strong></p>
+            <p class="mg-b-0">Are you sure you want to delete <strong><?= $Company['CompanyName'] ?></strong></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary tx-13" data-dismiss="modal" onclick="window.location.reload()">No</button>
-            <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Customers.php" >
-                <input type="hidden" name="id" value="<?= $customer['PK_ID'] ?>">
-                <input type="submit" name="deleteCustomer" class="btn btn-danger tx-13" value="Yes" />
+            <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Company.php" >
+                <input type="hidden" name="id" value="<?= $Company['PK_ID'] ?>">
+                <input type="submit" name="deleteCompany" class="btn btn-danger tx-13" value="Yes" />
             </form>
           </div>
         </div>

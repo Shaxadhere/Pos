@@ -103,7 +103,7 @@ if(!empty($Failure)){
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content tx-14">
           <div class="modal-header">
-            <h6 class="modal-title" id="exampleModalLabel4">Add New Customer</h6>
+            <h6 class="modal-title" id="exampleModalLabel4">Add New Product</h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

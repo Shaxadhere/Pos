@@ -13,8 +13,7 @@
     <script src="/pos/assets/template/lib/jqvmap/jquery.vmap.min.js"></script>
     <script src="/pos/assets/template/lib/jqvmap/maps/jquery.vmap.usa.js"></script>
     <script src="/pos/assets/template/lib/typeahead.js/typeahead.bundle.min.js"></script>
-    <script src="/pos/assets/template/lib/cleave.js/cleave.min.js"></script>
-    <script src="/pos/assets/template/lib/cleave.js/addons/cleave-phone.us.js"></script>
+    <script src="/pos/assets/template/lib/select2/js/select2.min.js"></script>
 
 
     <script src="/pos/assets/template/assets/js/dashforge.js"></script>

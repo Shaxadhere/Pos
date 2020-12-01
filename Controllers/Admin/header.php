@@ -29,6 +29,7 @@ else{
     <link href="/pos/assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="/pos/assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="/pos/assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="/pos/assets/template/lib/select2/css/select2.min.css" rel="stylesheet">
 
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="/pos/assets/template/assets/css/dashforge.css">

@@ -5,11 +5,11 @@ $_HTMLROOTURI = "/pos";
 
 // default database connection method
 function connect(){
-    define("server", "localhost");
-    define("usr","root");
-    define("pas","");
-    define("data","db_pos");
-    $connection = mysqli_connect(server, usr, pas, data) or die("failed to connect to database");
+    $server = "localhost";
+    $usr = "root";
+    $pass = "";
+    $data = "db_pos";
+    $connection = mysqli_connect($server, $usr, $pass, $data) or die("failed to connect to database");
     return ($connection);
 }
 

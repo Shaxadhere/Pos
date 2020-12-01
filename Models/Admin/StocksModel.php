@@ -2,40 +2,22 @@
 
 include_once('../../config.php');
 
-class StocksModel{
+class StockModel{
 
     function List(){
         return fetchData("tbl_stock", connect());
     }
 
-    function Add($stockName, $address, $postalCode, $landmark, $city, $state, $phone, $email, $fax, $mobile, $note){
+    function Add($FK_Product, $Quantity){
         insertData(
             "tbl_stock",
             array(
-                "stockName",
-                "Address",
-                "PostalCode",
-                "Landmark",
-                "City",
-                "Province",
-                "Phone",
-                "Email",
-                "Fax",
-                "Mobile",
-                "Note"
+                "FK_Product",
+                "Quantity"
             ),
             array(
-                $stockName,
-                $address,
-                $postalCode,
-                $landmark,
-                $city,
-                $state,
-                $phone,
-                $email,
-                $fax,
-                $mobile,
-                $note
+                $FK_Product,
+                $Quantity
             ),
             connect()
         );
@@ -50,32 +32,12 @@ class StocksModel{
         );
     }
 
-    function Edit($id, $stockName, $address, $postalCode, $landmark, $city, $state, $phone, $email, $fax, $mobile, $note){
+    function Edit($id, $Quantity){
         editData(
             "tbl_stock",
             array(
-                "stockName",
-                $stockName,
-                "Address",
-                $address,
-                "PostalCode",
-                $postalCode,
-                "Landmark",
-                $landmark,
-                "City",
-                $city,
-                "Province",
-                $state,
-                "Phone",
-                $phone,
-                "Email",
-                $email,
-                "Fax",
-                $fax,
-                "Mobile",
-                $mobile,
-                "Note",
-                $note
+                "Quantity",
+                $Quantity
             ),
             "PK_ID",
             $id,
@@ -83,14 +45,6 @@ class StocksModel{
         );
     }
 
-    function Delete($id){
-        deleteDataById(
-            "tbl_stock",
-            "PK_ID",
-            $id,
-            connect()
-        );
-    }
 }
 
 ?>

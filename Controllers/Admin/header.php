@@ -64,8 +64,6 @@ else{
           <div class="collapse" id="loggedinMenu">
             <ul class="nav nav-aside mg-b-0">
               <li class="nav-item"><a href="#" class="nav-link"><i data-feather="edit"></i> <span>Edit Profile</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><i data-feather="user"></i> <span>View Profile</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><i data-feather="settings"></i> <span>Account Settings</span></a></li>
               <li class="nav-item"><a href="logout" class="nav-link"><i data-feather="log-out"></i> <span>Sign Out</span></a></li>
             </ul>
           </div>
@@ -75,9 +73,13 @@ else{
           
           <li class="nav-label mg-t-25">Features</li>
           <li class="nav-item"><a href="customers" class="nav-link"><i data-feather="package"></i> <span>Customers</span></a></li>
-          <li class="nav-item"><a href="products" class="nav-link"><i data-feather="package"></i> <span>Products</span></a></li>
           <li class="nav-item"><a href="sales" class="nav-link"><i data-feather="activity"></i> <span>Sales</span></a></li>
-          <li class="nav-item"><a href="stocks" class="nav-link"><i data-feather="book"></i> <span>Stocks</span></a></li>
+
+          <li class="nav-label mg-t-25">Manage Products</li>
+          <li class="nav-item"><a href="products" class="nav-link"><i data-feather="package"></i> <span>Products</span></a></li>
+          <li class="nav-item"><a href="stocks" class="nav-link"><i data-feather="package"></i> <span>Stocks</span></a></li>
+          <li class="nav-item"><a href="company" class="nav-link"><i data-feather="package"></i> <span>Companies</span></a></li>
+          <li class="nav-item"><a href="category" class="nav-link"><i data-feather="activity"></i> <span>Categories</span></a></li>
          </ul>
       </div>
     </aside>

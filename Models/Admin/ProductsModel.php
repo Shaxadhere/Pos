@@ -42,12 +42,10 @@ class ProductModel{
         );
     }
 
-    function Edit($id, $productCode, $productName, $price, $FK_Category, $FK_Company, $Image, $Features){
+    function Edit($id, $productName, $price, $FK_Category, $FK_Company, $Image, $Features){
         editData(
             "tbl_product",
             array(
-                "ProductCode",
-                $productCode,
                 "ProductName",
                 $productName,
                 "Price",

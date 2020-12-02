@@ -12,13 +12,13 @@ if(isset($_POST['addCompany'])){
     //Empty Strings Check
     if(empty($_POST['CompanyName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?CompanyName=Company Name is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?CompanyName=Company Name is Required#addnew");
     }
 
     //Validating Input
     if(!validatePlainText($_POST['CompanyName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?CompanyName=Company name can only contain letters and spaces#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?CompanyName=Company name can only contain letters and spaces#addnew");
     }
 
     if($status){
@@ -26,10 +26,10 @@ if(isset($_POST['addCompany'])){
             $_POST['CompanyName']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?Success=Company Added Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?Success=Company Added Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?Failure=Internal Server Error");
     }
 }
 
@@ -39,7 +39,7 @@ if(isset($_POST['editCompany'])){
     //Empty Strings Check
     if(empty($_POST['CompanyName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?CompanyName=Company Name is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?CompanyName=Company Name is Required#editData");
     }
 
     if(empty($_POST['id'])){
@@ -50,7 +50,7 @@ if(isset($_POST['editCompany'])){
     //Validating Input
     if(!validatePlainText($_POST['CustomerName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?CompanyName=Company name can only contain letters and spaces#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?CompanyName=Company name can only contain letters and spaces#editData");
     }
     
     if($status){
@@ -59,10 +59,10 @@ if(isset($_POST['editCompany'])){
             $_POST['CustomerName']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?Success=Company Modified Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?Success=Company Modified Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?Failure=Internal Server Error");
     }
 }
 
@@ -75,7 +75,7 @@ if(isset($_POST['deleteCompany'])){
     }
     if($status){
         $model->Delete($_POST['id']);
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/company?Success=Company Deleted Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Company?Success=Company Deleted Successfully");
     }
 }
 

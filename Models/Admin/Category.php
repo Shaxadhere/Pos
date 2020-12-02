@@ -12,13 +12,13 @@ if(isset($_POST['addCategory'])){
     //Empty Strings Check
     if(empty($_POST['CategoryName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?CategoryName=Category Name is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?CategoryName=Category Name is Required#addnew");
     }
 
     //Validating Input
     if(!validatePlainText($_POST['CategoryName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?CategoryName=Category name can only contain letters and spaces#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?CategoryName=Category name can only contain letters and spaces#addnew");
     }
 
     if($status){
@@ -26,10 +26,10 @@ if(isset($_POST['addCategory'])){
             $_POST['CategoryName']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?Success=Category Added Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?Success=Category Added Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?Failure=Internal Server Error");
     }
 }
 
@@ -39,7 +39,7 @@ if(isset($_POST['editCategory'])){
     //Empty Strings Check
     if(empty($_POST['CategoryName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?CategoryName=Category Name is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?CategoryName=Category Name is Required#editData");
     }
 
     if(empty($_POST['id'])){
@@ -50,7 +50,7 @@ if(isset($_POST['editCategory'])){
     //Validating Input
     if(!validatePlainText($_POST['CategoryName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?CategoryName=Category name can only contain letters and spaces#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?CategoryName=Category name can only contain letters and spaces#editData");
     }
     
     if($status){
@@ -59,10 +59,10 @@ if(isset($_POST['editCategory'])){
             $_POST['CategoryName']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?Success=Category Modified Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?Success=Category Modified Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?Failure=Internal Server Error");
     }
 }
 
@@ -75,7 +75,7 @@ if(isset($_POST['deleteCategory'])){
     }
     if($status){
         $model->Delete($_POST['id']);
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/category?Success=Category Deleted Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Category?Success=Category Deleted Successfully");
     }
 }
 

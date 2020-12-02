@@ -12,37 +12,37 @@ if(isset($_POST['addCustomer'])){
     //Empty Strings Check
     if(empty($_POST['CustomerName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?CustomerName=Customer Name is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?CustomerName=Customer Name is Required#addnew");
     }
     if(empty($_POST['Address'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Address=Address is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Address=Address is Required#addnew");
     }
     if(empty($_POST['PostalCode'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?PostalCode=Postal Code is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?PostalCode=Postal Code is Required#addnew");
     }
     if(empty($_POST['City'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?City=City is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?City=City is Required#addnew");
     }
     if(empty($_POST['State'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?State=State is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?State=State is Required#addnew");
     }
     if(empty($_POST['Mobile'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Mobile=Mobile is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Mobile=Mobile is Required#addnew");
     }
     
     //Validating Input
     if(!validatePlainText($_POST['CustomerName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?CustomerName=Customer name can only contain letters and spaces#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?CustomerName=Customer name can only contain letters and spaces#addnew");
     }
     if(!validateEmail($_POST['Email'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Email=Could not validate email#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Email=Could not validate email#addnew");
     }
 
     if($status){
@@ -60,10 +60,10 @@ if(isset($_POST['addCustomer'])){
             $_POST['Note']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Success=Customer Added Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Success=Customer Added Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Failure=Internal Server Error");
     }
 }
 
@@ -73,37 +73,37 @@ if(isset($_POST['editCustomer'])){
     //Empty Strings Check
     if(empty($_POST['CustomerName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?CustomerName=Customer Name is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?CustomerName=Customer Name is Required#editData");
     }
     if(empty($_POST['Address'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Address=Address is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Address=Address is Required#editData");
     }
     if(empty($_POST['PostalCode'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?PostalCode=Postal Code is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?PostalCode=Postal Code is Required#editData");
     }
     if(empty($_POST['City'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?City=City is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?City=City is Required#editData");
     }
     if(empty($_POST['State'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?State=State is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?State=State is Required#editData");
     }
     if(empty($_POST['Mobile'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Mobile=Mobile is Required#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Mobile=Mobile is Required#editData");
     }
     
     //Validating Input
     if(!validatePlainText($_POST['CustomerName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?CustomerName=Customer name can only contain letters and spaces#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?CustomerName=Customer name can only contain letters and spaces#editData");
     }
     if(!validateEmail($_POST['Email'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Email=Could not validate email#editData");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Email=Could not validate email#editData");
     }
 
     if($status){
@@ -122,10 +122,10 @@ if(isset($_POST['editCustomer'])){
             $_POST['Note']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Success=Customer Modified Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Success=Customer Modified Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Failure=Internal Server Error");
     }
 }
 
@@ -138,7 +138,7 @@ if(isset($_POST['deleteCustomer'])){
     }
     if($status){
         $model->Delete($_POST['id']);
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/customers?Success=Customer Deleted Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Success=Customer Deleted Successfully");
     }
 }
 

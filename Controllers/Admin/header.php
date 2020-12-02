@@ -8,7 +8,7 @@ if(isset($_SESSION['USER'])){
   }
 }
 else{
-  redirectWindow("/pos/auth");
+  redirectWindow("/Pos/auth");
 }
 
 ?>
@@ -21,23 +21,23 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/pos/assets/template/assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/Pos/assets/template/assets/img/favicon.png">
 
     <title></title>
 
     <!-- vendor css -->
-    <link href="/pos/assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="/pos/assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="/pos/assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
-    <link href="/pos/assets/template/lib/select2/css/select2.min.css" rel="stylesheet">
+    <link href="/Pos/assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/Pos/assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/Pos/assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="/Pos/assets/template/lib/select2/css/select2.min.css" rel="stylesheet">
 
     <!-- DashForge CSS -->
-    <link rel="stylesheet" href="/pos/assets/template/assets/css/dashforge.css">
-    <link rel="stylesheet" href="/pos/assets/template/assets/css/dashforge.dashboard.css">
+    <link rel="stylesheet" href="/Pos/assets/template/assets/css/dashforge.css">
+    <link rel="stylesheet" href="/Pos/assets/template/assets/css/dashforge.dashboard.css">
 
     <!--datatables-->
-    <link href="/pos/assets/template/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="/pos/assets/template/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="/Pos/assets/template/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/Pos/assets/template/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
     
   </head>
   <body>
@@ -53,7 +53,7 @@ else{
       <div class="aside-body">
         <div class="aside-loggedin">
           <div class="d-flex align-items-center justify-content-start">
-            <a href="#loggedinMenu" data-toggle="collapse" class="avatar"><img src="/pos/Uploads/avatar.jpg" class="rounded-circle" alt=""></a>
+            <a href="#loggedinMenu" data-toggle="collapse" class="avatar"><img src="/Pos/Uploads/avatar.jpg" class="rounded-circle" alt=""></a>
           </div>
           <div class="aside-loggedin-user">
             <a href="#loggedinMenu" class="d-flex align-items-center justify-content-between mg-b-2" data-toggle="collapse">
@@ -73,14 +73,14 @@ else{
           <li class="nav-item"><a href="index" class="nav-link"><i data-feather="home"></i> <span>Dashboard</span></a></li>
           
           <li class="nav-label mg-t-25">Features</li>
-          <li class="nav-item"><a href="customers" class="nav-link"><i data-feather="package"></i> <span>Customers</span></a></li>
-          <li class="nav-item"><a href="sales" class="nav-link"><i data-feather="activity"></i> <span>Sales</span></a></li>
+          <li class="nav-item"><a href="Customers" class="nav-link"><i data-feather="package"></i> <span>Customers</span></a></li>
+          <li class="nav-item"><a href="Sales" class="nav-link"><i data-feather="activity"></i> <span>Sales</span></a></li>
 
           <li class="nav-label mg-t-25">Manage Products</li>
-          <li class="nav-item"><a href="products" class="nav-link"><i data-feather="package"></i> <span>Products</span></a></li>
-          <li class="nav-item"><a href="stocks" class="nav-link"><i data-feather="package"></i> <span>Stocks</span></a></li>
-          <li class="nav-item"><a href="company" class="nav-link"><i data-feather="package"></i> <span>Companies</span></a></li>
-          <li class="nav-item"><a href="category" class="nav-link"><i data-feather="activity"></i> <span>Categories</span></a></li>
+          <li class="nav-item"><a href="Products" class="nav-link"><i data-feather="package"></i> <span>Products</span></a></li>
+          <li class="nav-item"><a href="Stocks" class="nav-link"><i data-feather="package"></i> <span>Stocks</span></a></li>
+          <li class="nav-item"><a href="Company" class="nav-link"><i data-feather="package"></i> <span>Companies</span></a></li>
+          <li class="nav-item"><a href="Category" class="nav-link"><i data-feather="activity"></i> <span>Categories</span></a></li>
          </ul>
       </div>
     </aside>

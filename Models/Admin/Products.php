@@ -60,6 +60,7 @@ if(isset($_POST['addProduct'])){
             $productId,
             0
         );
+
         redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Success=Product Added Successfully");
     }
     else{

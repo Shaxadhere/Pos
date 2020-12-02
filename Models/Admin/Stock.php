@@ -2,6 +2,7 @@
 
 include_once('../../config.php');
 include_once('StockModel.php');
+include_once('PurchaseModel.php');
 
 
 $model = new StockModel();
@@ -33,9 +34,20 @@ if(isset($_POST['addStock'])){
         $validProduct = mysqli_fetch_array($verifyProductCode);
         
         $productId = $validProduct['PK_ID'];
+        $newQuantity = intval($validProduct['Quantity']) + intval($_POST['Quantity']);
 
         if(checkExistance("tbl_product", "FK_Product", $productId, connect())){
-            $model->Edit($productId,$validProduct['Quantity']);
+            $model->Edit(
+                $productId,
+                $validProduct['Quantity']
+            );
+            $purchaseModel = new PurchaseModel();
+            $purchaseModel->Add(
+                $productId,
+                $newQuantity,
+                date('d/m/Y h:i:s a', time())
+            );
+
             redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Success=Stock Added Successfully");
         }
         redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Failure=Internal Server Error");

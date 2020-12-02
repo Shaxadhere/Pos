@@ -30,6 +30,7 @@ else{
     <link href="/Pos/assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="/Pos/assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
     <link href="/Pos/assets/template/lib/select2/css/select2.min.css" rel="stylesheet">
+    <link href="/Pos/assets/searchbox.css" rel="stylesheet">
 
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="/Pos/assets/template/assets/css/dashforge.css">

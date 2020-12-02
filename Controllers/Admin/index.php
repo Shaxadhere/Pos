@@ -160,10 +160,17 @@ getHeader("Dashboard", 'header.php');
     <div class="col-md-6">
 
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Product Name" id="textboxProduct">
-            <div class="input-group-append">
-                <button class="btn btn-outline-light" type="button" id="btnAddProduct">Add</button>
-            </div>
+           
+                <form class="search" method="post" action="index.html">
+                    <input type="text" name="q" placeholder="Search..." class="form-control" />
+                    <ul class="results">
+                        <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                        <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                        <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                        <li><a href="index.html">Search Result #4</a></li>
+                    </ul>
+                </form>
+            </section>
         </div>
 
         <br>

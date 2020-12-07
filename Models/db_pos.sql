@@ -327,3 +327,12 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 alter table tbl_purchased add column date datetime
+
+
+INSERT INTO `tbl_product` (`ProductCode`, `ProductName`, `Price`, `FK_Category`, `FK_Company`, `Image`, `Features`) VALUES
+('PKA34S', 'Mi Powerbank', 2500, 6, 3, 'phone.jpg', 'iphone iphone hai'),
+('KML2SS', 'Macbook Pro 2020', 256000, 6, 3, 'phone.jpg', 'iphone iphone hai'),
+('12EPOQ', 'Motorolla G6', 10000, 6, 3, 'phone.jpg', 'iphone iphone hai'),
+('ZXR34F', 'Moto X', 6000, 6, 3, 'phone.jpg', 'iphone iphone hai'),
+('HJIO3P', 'Tesla Model S', 1209000, 6, 3, 'phone.jpg', 'iphone iphone hai'),
+('POL89A', 'Tesla Car Charger', 120000, 6, 3, 'phone.jpg', 'iphone iphone hai'),

@@ -18,10 +18,6 @@ if(isset($_POST['addCustomer'])){
         $status = false;
         redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?Address=Address is Required#addnew");
     }
-    if(empty($_POST['PostalCode'])){
-        $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?PostalCode=Postal Code is Required#addnew");
-    }
     if(empty($_POST['City'])){
         $status = false;
         redirectWindow("$_HTMLROOTURI/Controllers/Admin/Customers?City=City is Required#addnew");

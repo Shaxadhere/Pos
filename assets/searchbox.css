@@ -36,14 +36,14 @@ input {
 .search {
     position: relative;
     margin: 0 auto;
-    width: 300px;
+
 }
 
 .search input {
-    height: 26px;
+    height: 37px;
     width: 100%;
     padding: 0 12px 0 25px;
-    background: white url("https://cssdeck.com/uploads/media/items/5/5JuDgOa.png") 8px 6px no-repeat;
+    background: white url("https://cssdeck.com/uploads/media/items/5/5JuDgOa.png") 7px 11px no-repeat;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;

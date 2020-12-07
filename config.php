@@ -26,7 +26,9 @@ function generateProductCode ()
 {
     $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
 	return substr(str_shuffle($str_result),0, 6); 
-} 
+}
+
+
 
 
 

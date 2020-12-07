@@ -121,6 +121,49 @@ function fetchDataById(string $table, string $PrimaryKey, $id, $conn){
 }
 
 /**
+ * Searches rows according to the input table by writing mysql query
+ *
+ * @param String   $table  expects table name
+ * @param Array   $data  expects data in array as array("column1", value1, "column2", "value2"...)
+ * @param mysqli_connect   $conn  expects database connection
+ * 
+ * @return mysqli_query_results
+ */ 
+function fetchDataLike(string $table, array $data, $maxResult, $conn){
+
+    //breaking data array//
+    $ini = '';
+    $c = 0;
+    $mm = count($data);
+    foreach($data as $item){
+        $c++;
+        if($mm % 2 == 0){
+            $ini .= "`$item` Like ";
+        }
+        if($mm % 2 != 0){
+            $ini .= "'$item%'";
+        }
+        if($mm % 2 != 0 && $c < count($data))
+        {
+            $ini.=' OR ';
+        }
+        if($c == count($data)){
+            $ini .= '';
+        }
+        $mm--;
+    }
+ 
+    $query = "SELECT * FROM `$table` WHERE $ini LIMIT $maxResult";
+    $res = mysqli_query($conn, $query);
+    if (!$res) {
+        printf("Error: %s\n", mysqli_error($conn));
+        exit();
+    }
+    return $res;
+    
+ }
+
+/**
  * deletes values in a table with a specific primary key value by writing mysql query
  *
  * @param String   $table  expects table name

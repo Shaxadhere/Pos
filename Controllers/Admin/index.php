@@ -4,12 +4,68 @@ getHeader("Dashboard", 'header.php');
 
 
 ?>
+<style>
+    .btn-group,
+    .btn-group-vertical {
+        position: relative;
+        display: inline-flex;
+        vertical-align: middle;
+        transform: translate(19px, 0px);
+    }
+
+    button.pro-name {
+        background: unset;
+        border: unset;
+        color: #0180fb;
+        padding: unset;
+    }
+
+    button.pro-name:hover {
+        color: #0168fa;
+        background-color: unset;
+        border-color: unset;
+    }
+
+    .increase-decrease button.btn.btn-primary,
+    button.pro-name:active {
+        color: #0168fa !important;
+        background-color: unset !important;
+        border-color: unset !important;
+        box-shadow: unset !Important;
+    }
+
+    .increase-decrease button.btn.btn-primary,
+    button.pro-name:focus {
+        color: #0168fa !important;
+        background-color: unset !important;
+        border-color: unset !important;
+        box-shadow: unset !Important;
+    }
+
+    button.pro-name span {
+        font-size: 18px !IMPORTANT;
+    }
+
+    .search {
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .search input {
+        height: 37px !important;
+        background: white url(https://cssdeck.com/uploads/media/items/5/5JuDgOa.png) 8px 12px no-repeat !important;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-6">
         <div id="userformscroll" class="scrollbar-primary pos-relative ht-350 bd">
             <div class="pd-20">
-                <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Customers.php" autocomplete="chrome-off">
+
+                <!------------Start Of Form------------>
+
+                <form method="post" id="checkoutForm">
                     <?php
 
                     if (isset($_GET['error'])) {
@@ -23,7 +79,7 @@ getHeader("Dashboard", 'header.php');
 
                     ?>
                     <div class="form-group">
-                        <label>Customer Name</label>
+                        <label>Customer Name<span style="color:red">*</span></label>
                         <input type="text" required="Customer Name is Required" name="CustomerName" class="form-control" id="CustomerName" placeholder="Ali Sethi.. etc">
                         <?php
 
@@ -37,7 +93,7 @@ getHeader("Dashboard", 'header.php');
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>Address</label>
+                            <label>Address<span style="color:red">*</span></label>
                             <input type="text" required="Address is required" name="Address" class="form-control" placeholder="Suite, Apt..etc">
                             <?php
 
@@ -52,7 +108,7 @@ getHeader("Dashboard", 'header.php');
 
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="inputEmail4">State</label><br>
+                            <label for="inputEmail4">State<span style="color:red">*</span></label><br>
                             <input id="theStates" type="text" required="State is required" name="State" class="form-control" placeholder="State">
                             <?php
 
@@ -64,7 +120,7 @@ getHeader("Dashboard", 'header.php');
                             ?>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputEmail4">City</label><br>
+                            <label for="inputEmail4">City<span style="color:red">*</span></label><br>
                             <input id="theCities" type="text" required="City is required" name="City" class="form-control" placeholder="City">
                             <?php
 
@@ -77,7 +133,7 @@ getHeader("Dashboard", 'header.php');
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputEmail4">Postal Code</label><br>
-                            <input id="PostalCode" type="text" required="Postal Code is required" name="PostalCode" class="form-control" placeholder="PostalCode">
+                            <input id="PostalCode" type="text" name="PostalCode" class="form-control" placeholder="PostalCode">
                             <?php
 
                             if (isset($_GET['PostalCode'])) {
@@ -107,7 +163,7 @@ getHeader("Dashboard", 'header.php');
                             ?>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputPassword4">Mobile</label>
+                            <label for="inputPassword4">Mobile<span style="color:red">*</span></label>
                             <input type="phone" required="Mobile is required" name="Mobile" class="form-control" placeholder="Mobile number">
                             <?php
 
@@ -142,12 +198,12 @@ getHeader("Dashboard", 'header.php');
             <div class="card-body">
                 <div class="form-group">
 
-                    <input type="text" name="Note" class="form-control" id="Note" placeholder="Amount Paid">
+                    <input type="text" name="AmountPaid" class="form-control" id="AmountPaid" placeholder="Amount Paid">
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>PKR 89.00</h3>
-                        <span><strong>Return:</strong> 34.00</span>
+                        <h3 id="totalbilllabel">PKR 00.00</h3>
+                        <span id="returnamountlabel"><strong>Return:</strong> 00.00</span>
 
                     </div>
                     <div class="col-md-6">
@@ -159,74 +215,62 @@ getHeader("Dashboard", 'header.php');
     </div>
     <div class="col-md-6">
 
-        <div class="input-group">
-           
-                <form class="search" method="post" action="index.html">
-                    <input type="text" name="q" placeholder="Search..." class="form-control" />
-                    <ul class="results">
-                        <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
-                        <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
-                        <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
-                        <li><a href="index.html">Search Result #4</a></li>
-                    </ul>
-                </form>
-            </section>
+
+
+        <div class="search">
+            <input type="text" id="searchProduct" name="searchProduct" placeholder="Search..." class="form-control" />
+            <ul class="results" id="searchProductResults">
+                <li>type something..</li>
+            </ul>
         </div>
+        </section>
+
 
         <br>
         <div id="scroll1" class="scrollbar-lg pos-relative ht-300 bd">
-            <div class="pd-20">
-                <li class="list-group-item d-flex align-items-center">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">Product Name</h6>
-                            <span class="d-block tx-11 text-muted">Category / Company</span>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row" style="font-size:16px">
-                                <div class="col-md-4">
-                                    <span>+</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <span>1</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <span>-</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span style="padding:30px; font-size:16px">12.00</span>
-                        </div>
-                    </div>
-                </li>
-
+            <div class="pd-20 row" style="padding: 20px 20px 0px 20px;">
+                <div class="col-md-6">
+                    <span style="font-weight:bold">Product</span>
+                </div>
+                <div class="col-md-3">
+                    <span style="font-weight:bold">QTY</span>
+                </div>
+                <div class="col-md-3">
+                    <span style="font-weight:bold">Unit Price</span>
+                </div>
+                
             </div>
+            <div class="pd-20" id="itemslist"></div>
         </div>
         <br>
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <span><strong>Goods and Services Tax 13%</strong></span>
+                        <span><strong>Goods and Services Tax 17%</strong></span>
                     </div>
                     <div class="col-md-6">
-                        <span style="text-align:right; float:right">PKR 89.00</span>
+                        <span style="text-align:right; float:right" id="gst">PKR 89.00</span>
                     </div>
                     <div class="col-md-6">
                         <span><strong>Total Amount</strong></span>
                     </div>
                     <div class="col-md-6">
-                        <span style="float:right; float:right">PKR 89.00</span>
+                        <span style="float:right; float:right" id="totalpricelabel">PKR 89.00</span>
                     </div>
                     </br>
                     </br>
                     <div class="col-md-6">
 
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-danger" style="width:150px">Empty Cart</button>
-                            <input type="button" class="btn btn-primary" style="width:284px" value="Check Out" />
+                            <button type="button" id="emptyCart" class="btn btn-danger" style="width:150px">Empty Cart</button>
+                            <button type="button" id="checkOut" class="btn btn-primary blue-checkout" style="width:284px">Check Out</button>
                             </form>
+
+
+                            <!------------End Of Form------------>
+
+
                         </div>
                     </div>
                 </div>
@@ -235,24 +279,113 @@ getHeader("Dashboard", 'header.php');
 
     </div>
 
+
     <?php
     getFooter('footer.php');
     ?>
     <script>
-        $('#textboxProduct').on('input', function() {
-            alert(this.value);
+        $('.index0').click(function(){alert('clicked')})
+        $('.searchresultitem').click(function(){alert('clicked')})
+
+        function check(){
+            alert("clicked");
+        }
+        if ($('#itemslist').is(':empty')) {
+            $('#itemslist').append(
+                "<span id='empty'><center><span>Products will appear here after you add them to cart</span><hr class='mg-y-20'></center></span>"
+            );
+        }
+
+        $('#checkOut').click(function() {
+
+            var customerName = $('#CustomerName').val();
+
+            var productIds = $('.productIds').map(function() {
+                return $(this).val();
+            }).get();
+
+            var qtys = $('.qtys').map(function() {
+                return $(this).val();
+            }).get();
+
+            var prices = $('.prices').map(function(){
+                return $(this).html();
+            }).get();
+
+            var amountPaid = $('#AmountPaid').val();
+
             $.ajax({
                 type: "POST",
-                url: "ProductView?uuid=" + uuid,
+                url: "/Pos/Models/Pos?CustomerName=" + 
+                customerName + 
+                "&ProductIds=" + 
+                productIds + 
+                "&Qtys=" + 
+                qtys + 
+                "&Prices=" + 
+                prices +
+                "&AmountPaid=" +
+                amountPaid,
+                contentType: 'application/json; charset=utf-8',
                 success: function(response) {
-                    $('#modelForm').empty();
-                    $('#modelForm').append(response);
+                    var res = JSON.parse(response);
+                    $('#totalpricelabel').html("PKR " + res[0] + ".00");
+                    $('#returnamountlabel').html("<strong>Return: </strong>" + res[1] + ".00");
+                    $('#gst').html(res[2] + ".00");
+                    $('#totalbilllabel').html("PKR " + res[3] + ".00");
                 },
                 error: function(e) {
                     alert(e);
                 }
             })
         });
+
+        $('#emptyCart').click(function () {
+            $('#itemslist').empty();
+            $('#itemslist').append(
+                "<span id='empty'><center><span>Products will appear here after you add them to cart</span><hr class='mg-y-20'></center></span>"
+            );
+        });
+
+        //On key up getting search results from server
+        $('#searchProduct').on('input', function() {
+            input = this.value;
+            $.ajax({
+                type: "POST",
+                url: "ProductSearch?input=" + input,
+                success: function(response) {
+                    $('#searchProductResults').empty();
+                    $('#searchProductResults').append(response);
+                },
+                error: function(e) {
+                    alert(e);
+                }
+            })
+        });
+
+        //On press enter select the insert the first product in the billing section
+        $('#searchProduct').keypress(function(event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                if ($(".index0").length) {
+                    var uuid = $(".index0").attr('value');
+                    $.ajax({
+                        type: "POST",
+                        url: "ProductSearchFetch?uuid=" + uuid,
+                        success: function(response) {
+                            $('#empty').empty();
+                            $('#itemslist').append(response);
+                        },
+                        error: function(e) {
+                            alert(e);
+                        }
+                    })
+                } else {
+                    document.getElementById(".index0").innerHTML = "not found!";
+                }
+            }
+        });
+
         /////////////////States/////////////////
         var substringMatcher = function(strs) {
             return function findMatches(q, cb) {

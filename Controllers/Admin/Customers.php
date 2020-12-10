@@ -390,23 +390,17 @@ if(!empty($alert)){
     });
 
     /////////////////Datatable/////////////////
-    $(function(){
-      'use strict'
-      $('#table').DataTable({
-        language: {
-          searchPlaceholder: 'Search...',
-          sSearch: '',
-          lengthMenu: '_MENU_ items/page',
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
-      });
+    $(document).ready(function() {
+    var table = $('#table').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'copy', 'excel', 'pdf', 'print', 'colvis'
+      ]
     });
+
+    table.buttons().container()
+      .insertBefore('#example_filter');
+  });
 
     /////////////////Page reload modal/////////////////
     $(document).ready(function() {

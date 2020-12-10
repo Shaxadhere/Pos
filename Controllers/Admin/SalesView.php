@@ -20,7 +20,7 @@ if (isset($_GET['uuid'])) {
             </div>
             <div class="modal-body">
                 <div class="card">
-                    <div class="card-header"><strong>Invoice Details</strong></div>
+                    <div class="card-header"><strong>Invoice Dated:</strong> 2020-12-10</div>
                     <div class="card-body">
                         <div class="row">
                             <div data-label="Example" class="df-example demo-table" style="width:100% !important;">
@@ -42,8 +42,8 @@ if (isset($_GET['uuid'])) {
 
                                                 echo "<tr>";
                                                 echo "<th scope='row'>$count</th>";
-                                                echo "<td>".$sale['0']."</td>";
-                                                echo "<td>".$sale[1]."</td>";
+                                                echo "<td>" . $sale['0'] . "</td>";
+                                                echo "<td>" . $sale[1] . "</td>";
                                                 echo "<td>150</td>";
                                                 echo "</tr>";
                                                 $count = $count + 1;
@@ -52,20 +52,18 @@ if (isset($_GET['uuid'])) {
                                             ?>
 
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td><strong>Total Bill:</strong></td>
+                                                <td></td>
+                                                <td><strong>1280</strong></td>
+
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div><!-- table-responsive -->
-                                
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Total Bill:</h6>
-                                <span>1280</span>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Date:</h6>
-                                <span>2020-12-01</span>
+
                             </div>
                         </div>
                     </div>

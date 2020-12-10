@@ -93,21 +93,15 @@ getFooter("footer.php");
     });
 
     /////////////////Datatable/////////////////
-    $(function() {
-        'use strict'
-        $('#table').DataTable({
-            language: {
-                searchPlaceholder: 'Search...',
-                sSearch: '',
-                lengthMenu: '_MENU_ items/page',
-            },
+    $(document).ready(function() {
+        var table = $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
+                'copy', 'excel', 'pdf', 'print', 'colvis'
             ]
         });
+
+        table.buttons().container()
+            .insertBefore('#example_filter');
     });
 </script>

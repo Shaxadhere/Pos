@@ -5,13 +5,13 @@ session_start();
 
 if(isset($_SESSION['USER'])){
   if($_SESSION['USER']['FK_UserType'] == 1){
-    redirectWindow("/pos/Controllers/Admin");
+    redirectWindow("$_HTMLROOTURI/Controllers/Admin");
   }
   else if($_SESSION['USER']['FK_UserType'] == 2){
-    redirectWindow("/pos/Controllers/Manager");
+    redirectWindow("$_HTMLROOTURI/Controllers/Manager");
   }
   else if($_SESSION['USER']['FK_UserType'] == 3){
-    redirectWindow("/pos/Controllers/Employee");
+    redirectWindow("$_HTMLROOTURI/Controllers/Employee");
   }
 }
 

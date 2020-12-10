@@ -28,7 +28,7 @@
       </div><!-- navbar-brand -->
       <div id="navbarMenu" class="navbar-menu-wrapper">
         <div class="navbar-menu-header">
-          <a href="../../index.html" class="df-logo">dash<span>forge</span></a>
+          <a href="#" class="df-logo">dash<span>forge</span></a>
           <a id="mainMenuClose" href="page-forgot.html"><i data-feather="x"></i></a>
         </div><!-- navbar-menu-header -->
         <ul class="nav navbar-menu">

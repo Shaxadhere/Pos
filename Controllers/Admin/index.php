@@ -418,7 +418,7 @@ getHeader("Dashboard", 'header.php');
             if (status) {
                 $.ajax({
                     type: "POST",
-                    url: "/Pos/Models/Pos?CustomerName=" +
+                    url: "<?= $_HTMLROOTURI ?>/Models/Pos?CustomerName=" +
                         customerName +
                         "&Address=" +
                         address +

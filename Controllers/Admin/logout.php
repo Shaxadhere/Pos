@@ -3,5 +3,5 @@ include_once('../../config.php');
 session_start();
 session_unset();
 session_destroy();
-echo redirectWindow("/pos/auth/");
+echo redirectWindow("<?= $_HTMLROOTURI ?>/auth/");
 ?>

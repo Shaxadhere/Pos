@@ -46,13 +46,13 @@ if(isset($_POST['login'])){
             session_start();
             $_SESSION["USER"] = $ValidUser;
             if($UserType == 1){
-                redirectWindow("/pos/Controllers/Admin/");
+                redirectWindow("$_HTMLROOTURI/Controllers/Admin/");
             }
             else if($UserType == 2){
-                redirectWindow("/pos/Controllers/Manager/");
+                redirectWindow("$_HTMLROOTURI/Controllers/Manager/");
             }
             else if($UserType == 3){
-                redirectWindow("/pos/Controllers/Employee/");
+                redirectWindow("$_HTMLROOTURI/Controllers/Employee/");
             }
             else{
                 return http_response_code(400);

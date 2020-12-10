@@ -2,13 +2,23 @@
 
 include_once('../../config.php');
 
-class CategoryModel{
+class CategoryModel
+{
 
-    function List(){
-        return fetchData("tbl_productcategory", connect());
+    function List()
+    {
+        return verifyValues(
+            "tbl_productcategory",
+            array(
+                "deleted",
+                false
+            ),
+            connect()
+        );
     }
 
-    function Add($categoryName){
+    function Add($categoryName)
+    {
         insertData(
             "tbl_productcategory",
             array(
@@ -21,7 +31,8 @@ class CategoryModel{
         );
     }
 
-    function View($id){
+    function View($id)
+    {
         return fetchDataById(
             "tbl_productcategory",
             "PK_ID",
@@ -30,7 +41,8 @@ class CategoryModel{
         );
     }
 
-    function Edit($id, $categoryName){
+    function Edit($id, $categoryName)
+    {
         editData(
             "tbl_productcategory",
             array(
@@ -43,14 +55,17 @@ class CategoryModel{
         );
     }
 
-    function Delete($id){
-        deleteDataById(
+    function Delete($id)
+    {
+        editData(
             "tbl_productcategory",
+            array(
+                "deleted",
+                true
+            ),
             "PK_ID",
             $id,
             connect()
         );
     }
 }
-
-?>

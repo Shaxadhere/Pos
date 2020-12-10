@@ -1,11 +1,18 @@
 <?php
 
-include_once('../../config.php');
+// include_once('../../config.php');
 
 class CustomersModel{
 
     function List(){
-        return fetchData("tbl_customer", connect());
+        return verifyValues(
+            "tbl_customer",
+            array(
+                "deleted",
+                false
+            ),
+            connect()
+        );
     }
 
     function Add($customerName, $address, $postalCode, $landmark, $city, $state, $phone, $email, $fax, $mobile, $note){
@@ -84,8 +91,12 @@ class CustomersModel{
     }
 
     function Delete($id){
-        deleteDataById(
+        editData(
             "tbl_customer",
+            array(
+                "deleted",
+                true
+            ),
             "PK_ID",
             $id,
             connect()

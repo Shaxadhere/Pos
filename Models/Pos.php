@@ -1,16 +1,81 @@
 <?php
 
+include_once('Admin/CustomersModel.php');
+include_once('PosModel.php');
+include_once('Admin/SalesModel.php');
+
 include_once('../config.php');
 
+
+$CustomerModel = new CustomersModel();
+$PosModel = new POSModel();
+$SalesModel = new SalesModel();
+
 $status = true;
+$totalPrice = 0;
+$errors = array();
+
+//Empty Strings Check
+if (empty($_REQUEST['CustomerName'])) {
+    $status = false;
+    $errors['CustomerName'] = "Customer Name is Required";
+}
+if (empty($_REQUEST['Address'])) {
+    $status = false;
+    $errors['Address'] = "Address is Required";
+}
+if (empty($_REQUEST['City'])) {
+    $status = false;
+    $errors['City'] = "City is Required";
+}
+if (empty($_REQUEST['State'])) {
+    $status = false;
+    $errors['State'] = "State is Required";
+}
+if (empty($_REQUEST['Mobile'])) {
+    $status = false;
+    $errors['Mobile'] = "Mobile is Required";
+}
+
+//Validating Input
+if (!validatePlainText($_REQUEST['CustomerName'])) {
+    $status = false;
+    $errors['CustomerName'] = "Customer name can only contain letters and spaces";
+}
+
+$error = "";
+
+if ($status) {
+    $CustomerModel->Add(
+        $_REQUEST['CustomerName'],
+        $_REQUEST['Address'],
+        $_REQUEST['PostalCode'],
+        $_REQUEST['Landmark'],
+        $_REQUEST['City'],
+        $_REQUEST['State'],
+        $_REQUEST['Phone'],
+        $_REQUEST['Email'],
+        $_REQUEST['Fax'],
+        $_REQUEST['Mobile'],
+        $_REQUEST['Note']
+    );
+    $error = "Customer added";
+}
+
+
+
+
 $ProductIds = $_REQUEST['ProductIds'];
 $Qtys = $_REQUEST['Qtys'];
 $Prices = $_REQUEST['Prices'];
 $AmountPaid = $_REQUEST['AmountPaid'];
 
-$PricesArray = explode(",",$Prices);
 
-$totalPrice = 0;
+$PricesArray = explode(",", $Prices);
+$ProductIdsArray = explode(",", $ProductIds);
+$QtyArray = explode(",", $Qtys);
+
+
 foreach ($PricesArray as $price) {
     $totalPrice = $totalPrice + $price;
 }
@@ -19,95 +84,29 @@ $returnPrice = intval($AmountPaid) - $totalPrice;
 $gst = round(0.17 * $totalPrice);
 $totalBill = $totalPrice + $gst;
 
+
+
+$customer = $PosModel->fetchLastCustomer();
+$SalesModel->Add(
+    $totalBill,
+    $customer[0]
+);
+
+$sale = $SalesModel->getLastSales();
+$SalesModel->AddInvoice(
+    $ProductIdsArray,
+    $sale[0],
+    $QtyArray
+);
+
 $result = array(
     $totalPrice,
     $returnPrice,
     $gst,
-    $totalBill
+    $totalBill,
+    $error
 );
-
 echo json_encode($result);
 
-// $productsArray = array();
-// foreach ($_POST['productIds'] as $id) {
-//     array_push($productsArray, array($_POST['productIds'], $_POST['productQtys']));
-//     showAlert(json_encode($productsArray));
-// }
-
-
-
 include_once('../errors/errors.php');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// if(empty($_POST['CustomerName'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?CustomerName=Customer Name is Required");
-// }
-// if(empty($_POST['Address'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?Address=Address is Required");
-// }
-// if(empty($_POST['PostalCode'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?PostalCode=Postal Code is Required");
-// }
-// if(empty($_POST['City'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?City=City is Required");
-// }
-// if(empty($_POST['State'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?State=State is Required");
-// }
-// if(empty($_POST['Mobile'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?Mobile=Mobile is Required");
-// }
-
-// //Validating Input
-// if(!validatePlainText($_POST['CustomerName'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?CustomerName=Customer name can only contain letters and spaces");
-// }
-// if(!validateEmail($_POST['Email'])){
-//     $status = false;
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?Email=Could not validate email");
-// }
-
-// if($status){
-
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?Success=Checked out successfully");
-// }
-// else{
-//     redirectWindow("$_HTMLROOTURI/Controllers/Admin/index?Failure=Internal Server Error");
-// }
+?>

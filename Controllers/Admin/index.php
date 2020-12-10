@@ -58,6 +58,7 @@ getHeader("Dashboard", 'header.php');
     }
 </style>
 
+
 <div class="row">
     <div class="col-md-6">
         <div id="userformscroll" class="scrollbar-primary pos-relative ht-350 bd">
@@ -94,7 +95,7 @@ getHeader("Dashboard", 'header.php');
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Address<span style="color:red">*</span></label>
-                            <input type="text" required="Address is required" name="Address" class="form-control" placeholder="Suite, Apt..etc">
+                            <input type="text" required="Address is required" name="Address" class="form-control" id="Address" placeholder="Suite, Apt..etc">
                             <?php
 
                             if (isset($_GET['Address'])) {
@@ -145,14 +146,14 @@ getHeader("Dashboard", 'header.php');
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputEmail4">Landmark</label><br>
-                            <input id="landmark" type="text" name="Landmark" class="form-control" placeholder="Landmark">
+                            <input id="Landmark" type="text" name="Landmark" class="form-control" placeholder="Landmark">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" name="Email" class="form-control" placeholder="abc@example.com">
+                            <input id="Email" type="email" name="Email" class="form-control" placeholder="abc@example.com">
                             <?php
 
                             if (isset($_GET['Email'])) {
@@ -164,7 +165,7 @@ getHeader("Dashboard", 'header.php');
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputPassword4">Mobile<span style="color:red">*</span></label>
-                            <input type="phone" required="Mobile is required" name="Mobile" class="form-control" placeholder="Mobile number">
+                            <input type="phone" id="Mobile" required="Mobile is required" name="Mobile" class="form-control" placeholder="Mobile number">
                             <?php
 
                             if (isset($_GET['Mobile'])) {
@@ -176,7 +177,7 @@ getHeader("Dashboard", 'header.php');
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputPassword4">Phone</label>
-                            <input type="phone" name="Phone" class="form-control" placeholder="Phone number">
+                            <input type="phone" id="Phone" name="Phone" class="form-control" placeholder="Phone number">
                         </div>
                     </div>
 
@@ -238,7 +239,7 @@ getHeader("Dashboard", 'header.php');
                 <div class="col-md-3">
                     <span style="font-weight:bold">Unit Price</span>
                 </div>
-                
+
             </div>
             <div class="pd-20" id="itemslist"></div>
         </div>
@@ -250,13 +251,13 @@ getHeader("Dashboard", 'header.php');
                         <span><strong>Goods and Services Tax 17%</strong></span>
                     </div>
                     <div class="col-md-6">
-                        <span style="text-align:right; float:right" id="gst">PKR 89.00</span>
+                        <span style="text-align:right; float:right" id="gst">PKR 00.00</span>
                     </div>
                     <div class="col-md-6">
                         <span><strong>Total Amount</strong></span>
                     </div>
                     <div class="col-md-6">
-                        <span style="float:right; float:right" id="totalpricelabel">PKR 89.00</span>
+                        <span style="float:right; float:right" id="totalpricelabel">PKR 00.00</span>
                     </div>
                     </br>
                     </br>
@@ -277,6 +278,21 @@ getHeader("Dashboard", 'header.php');
             </div>
         </div>
 
+
+    </div>
+    <div class="pos-absolute t-10 r-10">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header" style="background: #1068fa;">
+                <h6 class="tx-inverse tx-14 mg-b-0 mg-r-auto" style="color:white">Notification</h6>
+                <small style="color:white">Just now</small>
+                <button type="button" class="ml-2 mb-1 close tx-normal" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <span id='toastMsg'></span>
+            </div>
+        </div>
     </div>
 
 
@@ -284,21 +300,27 @@ getHeader("Dashboard", 'header.php');
     getFooter('footer.php');
     ?>
     <script>
-        $('.index0').click(function(){alert('clicked')})
-        $('.searchresultitem').click(function(){alert('clicked')})
-
-        function check(){
-            alert("clicked");
-        }
+        //When invoice is empty
         if ($('#itemslist').is(':empty')) {
             $('#itemslist').append(
                 "<span id='empty'><center><span>Products will appear here after you add them to cart</span><hr class='mg-y-20'></center></span>"
             );
         }
 
+        //On Checkout Button is pressed
         $('#checkOut').click(function() {
 
             var customerName = $('#CustomerName').val();
+            var address = $('#Address').val();
+            var city = $('#theCities').val();
+            var state = $('#theStates').val();
+            var email = $('#Email').val();
+            var mobile = $('#Mobile').val();
+            var postalCode = $('#PostalCode').val();
+            var landmark = $('#Landmark').val();
+            var phone = $('#Phone').val();
+            var fax = $('#Fax').val();
+            var note = $('#Note').val();
 
             var productIds = $('.productIds').map(function() {
                 return $(this).val();
@@ -308,43 +330,179 @@ getHeader("Dashboard", 'header.php');
                 return $(this).val();
             }).get();
 
-            var prices = $('.prices').map(function(){
+            var prices = $('.prices').map(function() {
                 return $(this).html();
             }).get();
 
             var amountPaid = $('#AmountPaid').val();
 
-            $.ajax({
-                type: "POST",
-                url: "/Pos/Models/Pos?CustomerName=" + 
-                customerName + 
-                "&ProductIds=" + 
-                productIds + 
-                "&Qtys=" + 
-                qtys + 
-                "&Prices=" + 
-                prices +
-                "&AmountPaid=" +
-                amountPaid,
-                contentType: 'application/json; charset=utf-8',
-                success: function(response) {
-                    var res = JSON.parse(response);
-                    $('#totalpricelabel').html("PKR " + res[0] + ".00");
-                    $('#returnamountlabel').html("<strong>Return: </strong>" + res[1] + ".00");
-                    $('#gst').html(res[2] + ".00");
-                    $('#totalbilllabel').html("PKR " + res[3] + ".00");
-                },
-                error: function(e) {
-                    alert(e);
+            var status = true;
+
+            if (customerName.length == 0) {
+                status = false;
+                if (!($('#customerNameError').length)) {
+                    $('#CustomerName').after("<span id='customerNameError' style='color:red; font-size:12px;'>Customer Name is Required</span>");
                 }
-            })
+            }
+            if (customerName.length != 0) {
+                status = true;
+                $('#customerNameError').remove();
+            }
+
+            if (address.length == 0) {
+                status = false;
+                if (!($('#AddressError').length)) {
+                    $('#Address').after("<span id='AddressError' style='color:red; font-size:12px;'>Address is Required</span>");
+                }
+            }
+            if (address.length != 0) {
+                status = true;
+                $('#AddressError').remove();
+            }
+
+            if (city.length == 0) {
+                status = false;
+                if (!($('#CityError').length)) {
+                    $('#theCities').after("<span id='CityError' style='color:red; font-size:12px;'>City is Required</span>");
+                }
+            }
+            if (city.length != 0) {
+                status = true;
+                $('#CityError').remove();
+            }
+
+            if (state.length == 0) {
+                status = false;
+                if (!($('#StateError').length)) {
+                    $('#theStates').after("<span id='StateError' style='color:red; font-size:12px;'>State is Required</span>");
+                }
+            }
+            if (state.length != 0) {
+                status = true;
+                $('#StateError').remove();
+            }
+
+            if (mobile.length == 0) {
+                status = false;
+                if (!($('#MobileError').length)) {
+                    $('#Mobile').after("<span id='MobileError' style='color:red; font-size:12px;'>Mobile is Required</span>");
+                }
+            }
+            if (mobile.length != 0) {
+                status = true;
+                $('#MobileError').remove();
+            }
+
+            if (amountPaid.length == 0) {
+                status = false;
+                if (!($('#AmountPaidError').length)) {
+                    $('#AmountPaid').after("<span id='AmountPaidError' style='color:red; font-size:12px;'>Please enter the amount paid</span>");
+                }
+            }
+            if (amountPaid.length != 0) {
+                status = true;
+                $('#AmountPaidError').remove();
+            }
+
+            if ($('.qtys').length == 0) {
+                status = false;
+                if (!($('#zeroProductsError').length)) {
+                    $('#empty').empty();
+                    $('#itemslist').append(
+                        "<span id='zeroProductsError' style='color:red;'><center><span>Please add some products to cart first</span><hr class='mg-y-20'></center></span>"
+                    );
+                }
+            }
+
+
+            if (status) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Pos/Models/Pos?CustomerName=" +
+                        customerName +
+                        "&Address=" +
+                        address +
+                        "&PostalCode=" +
+                        postalCode +
+                        "&Landmark=" +
+                        landmark +
+                        "&City=" +
+                        city +
+                        "&State=" +
+                        state +
+                        "&Phone=" +
+                        phone +
+                        "&Fax=" +
+                        fax +
+                        "&Note=" +
+                        note +
+                        "&Email=" +
+                        email +
+                        "&Mobile=" +
+                        mobile +
+                        "&ProductIds=" +
+                        productIds +
+                        "&Qtys=" +
+                        qtys +
+                        "&Prices=" +
+                        prices +
+                        "&AmountPaid=" +
+                        amountPaid,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(response) {
+                        var res = JSON.parse(response);
+                        $('#totalpricelabel').html("PKR " + res[0] + ".00");
+                        $('#returnamountlabel').html("<strong>Return: </strong>" + res[1] + ".00");
+                        $('#gst').html("PKR " + res[2] + ".00");
+                        $('#totalbilllabel').html("PKR " + res[3] + ".00");
+                        $('#toastMsg').html(customerName + "'s order with " + res[3] + " rupees was successfully checked out")
+                        $(".toast").toast({
+                            delay: 4000
+                        });
+                        $(".toast").toast('show');
+                        $('#CustomerName').val('');
+                        $('#Address').val('');
+                        $('#theCities').val('');
+                        $('#theStates').val('');
+                        $('#Email').val('');
+                        $('#Mobile').val('');
+                        $('#PostalCode').val('');
+                        $('#Landmark').val('');
+                        $('#Phone').val('');
+                        $('#Fax').val('');
+                        $('#Note').val('');
+                        $('#AmountPaid').val('');
+                        $('#itemslist').empty();
+                        $('#itemslist').append(
+                            "<span id='empty'><center><span>Products will appear here after you add them to cart</span><hr class='mg-y-20'></center></span>"
+                        );
+
+                        setTimeout(function() {
+                            $('#totalpricelabel').html("PKR 0.00");
+                            $('#returnamountlabel').html("<strong>Return: </strong>0.00");
+                            $('#gst').html("PKR 0.00");
+                            $('#totalbilllabel').html("PKR 0.00");
+                        }, 4000);
+
+
+                    },
+                    error: function(e) {
+                        alert(e);
+                    }
+                })
+            }
         });
 
-        $('#emptyCart').click(function () {
+        //On Empty Cart Button Pressed
+        $('#emptyCart').click(function() {
             $('#itemslist').empty();
             $('#itemslist').append(
                 "<span id='empty'><center><span>Products will appear here after you add them to cart</span><hr class='mg-y-20'></center></span>"
             );
+            $('#totalpricelabel').html("PKR 0.00");
+            $('#returnamountlabel').html("<strong>Return: </strong>0.00");
+            $('#gst').html("PKR 0.00");
+            $('#totalbilllabel').html("PKR 0.00");
         });
 
         //On key up getting search results from server
@@ -369,12 +527,21 @@ getHeader("Dashboard", 'header.php');
             if (keycode == '13') {
                 if ($(".index0").length) {
                     var uuid = $(".index0").attr('value');
+                    var prices = $('.prices').map(function() {
+                        return $(this).html();
+                    }).get();
+
                     $.ajax({
                         type: "POST",
-                        url: "ProductSearchFetch?uuid=" + uuid,
+                        url: "ProductSearchFetch?uuid=" + uuid + "&Prices=" + prices,
                         success: function(response) {
                             $('#empty').empty();
-                            $('#itemslist').append(response);
+                            $('#zeroProductsError').empty();
+                            var res = JSON.parse(response);
+                            $('#itemslist').append(res[0]);
+                            $('#totalpricelabel').html("PKR " + res[1] + ".00");
+                            $('#gst').html("PKR " + res[3] + ".00");
+                            $('#totalbilllabel').html("PKR " + res[2] + ".00");
                         },
                         error: function(e) {
                             alert(e);

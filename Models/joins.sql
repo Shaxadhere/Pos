@@ -1,0 +1,1 @@
+select TotalBill, CustomerName, DateAdded, Mobile, City from tbl_sales inner join tbl_customer on tbl_sales.CustomerID = tbl_customer.PK_ID

@@ -83,16 +83,6 @@ if(isset($_GET['uuid'])){
                   }
 
 
-                  if(!empty($customer['Mobile'])){
-                    echo "<div class='col-md-6'>";
-                    echo "<h6>Mobile:</h6>";
-                    echo "<p>";
-                    echo $customer['Mobile'];
-                    echo "</p>";
-                    echo "</div>";
-                  }
-
-
                   if(!empty($customer['Province'])){
                     echo "<div class='col-md-6'>";
                     echo "<h6>State:</h6>";
@@ -121,17 +111,6 @@ if(isset($_GET['uuid'])){
                     echo "</p>";
                     echo "</div>";
                   }
-
-
-                  if(!empty($customer['Mobile'])){
-                    echo "<div class='col-md-6'>";
-                    echo "<h6>Mobile:</h6>";
-                    echo "<p>";
-                    echo $customer['Mobile'];
-                    echo "</p>";
-                    echo "</div>";
-                  }
-
 
                   if(!empty($customer['Note'])){
                     echo "<div class='col-md-12'>";

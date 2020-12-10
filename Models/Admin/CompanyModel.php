@@ -5,12 +5,19 @@ include_once('../../config.php');
 class CompanyModel{
 
     function List(){
-        return fetchData("tbl_productcompany", connect());
+        return verifyValues(
+            "tbl_productcompany",
+            array(
+                "deleted",
+                false
+            ),
+            connect()
+        );
     }
 
     function Add($CompanyName){
         insertData(
-            "tbl_productCompany",
+            "tbl_productcompany",
             array(
                 "CompanyName"
             ),
@@ -23,7 +30,7 @@ class CompanyModel{
 
     function View($id){
         return fetchDataById(
-            "tbl_productCompany",
+            "tbl_productcompany",
             "PK_ID",
             $id,
             connect()
@@ -32,7 +39,7 @@ class CompanyModel{
 
     function Edit($id, $CompanyName){
         editData(
-            "tbl_productCompany",
+            "tbl_productcompany",
             array(
                 "CompanyName",
                 $CompanyName
@@ -44,8 +51,12 @@ class CompanyModel{
     }
 
     function Delete($id){
-        deleteDataById(
-            "tbl_productCompany",
+        editData(
+            "tbl_productcompany",
+            array(
+                "deleted",
+                true
+            ),
             "PK_ID",
             $id,
             connect()

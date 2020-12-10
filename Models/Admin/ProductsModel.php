@@ -5,7 +5,14 @@ include_once('../../config.php');
 class ProductModel{
 
     function List(){
-        return fetchData("tbl_product", connect());
+        return verifyValues(
+            "tbl_product",
+            array(
+                "deleted",
+                false
+            ),
+            connect()
+        );
     }
 
     function Add($productCode, $productName, $price, $FK_Category, $FK_Company, $Image, $Features){
@@ -66,8 +73,12 @@ class ProductModel{
     }
 
     function Delete($id){
-        deleteDataById(
+        editData(
             "tbl_product",
+            array(
+                "deleted",
+                true
+            ),
             "PK_ID",
             $id,
             connect()

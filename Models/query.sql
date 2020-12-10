@@ -80,18 +80,23 @@ Quantity int default 0
 );
 
 
+
+
+create table if not EXISTS tbl_sales
+(
+PK_ID int PRIMARY key AUTO_INCREMENT,
+DateAdded datetime,
+TotalBill int,
+CustomerID int,
+constraint CustomerID foreign key(CustomerID) references tbl_customer(PK_ID)
+);
+
 create table if not EXISTS tbl_invoice
 (
 PK_ID int PRIMARY key AUTO_INCREMENT,
 FK_ProductInvoice int,
 constraint FK_ProductInvoice foreign key(FK_ProductInvoice) references tbl_product(PK_ID),
 FK_Sales int,
-constraint FK_Sales foreign key(FK_Sales) references tbl_sales(PK_ID)
-);
-create table if not EXISTS tbl_sales
-(
-PK_ID int PRIMARY key AUTO_INCREMENT,
-DateAdded datetime,
-CustomerID int,
-constraint CustomerID foreign key(CustomerID) references tbl_customer(PK_ID)
+constraint FK_Sales foreign key(FK_Sales) references tbl_sales(PK_ID),
+Quantity int
 );

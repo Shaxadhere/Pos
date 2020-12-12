@@ -1,17 +1,11 @@
 <?php
 include_once('../../config.php');
-include_once('../../Models/Admin/ProductsModel.php');
-include_once('../../Models/Admin/CategoryModel.php');
-include_once('../../Models/Admin/CompanyModel.php');
-getHeader("Products", "header.php");
+include_once('../../Models/Admin/CustomersModel.php');
+getHeader("Cutomers", "header.php");
 
-$model = new ProductModel();
-$categoryModel = new CategoryModel();
-$companyModel = new CompanyModel();
+$model = new CustomersModel();
 
 $fetched = $model->List();
-$category = $categoryModel->List();
-$company = $companyModel->List();
 
 
 $error = "";
@@ -27,7 +21,7 @@ if (isset($_GET['error'])) {
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-style1 mg-b-10">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Products</li>
+        <li class="breadcrumb-item active" aria-current="page">Customers</li>
       </ol>
     </nav>
     <h4 class="mg-b-0 tx-spacing--1">Welcome to Dashboard</h4>
@@ -35,7 +29,7 @@ if (isset($_GET['error'])) {
 </div>
 
 
-<h5 id="section4" class="mg-b-10">Products</h5>
+<h5 id="section4" class="mg-b-10">Customers</h5>
 
 
 <?php
@@ -64,7 +58,7 @@ if (!empty($Failure)) {
 
 ?>
 
-<a href="#addnew" data-toggle="modal" class="btn btn-sm btn-outline-primary">Add New Product</a>
+<a href="#addnew" data-toggle="modal" class="btn btn-sm btn-outline-primary">Add New Customer</a>
 
 <br><br>
 
@@ -73,9 +67,10 @@ if (!empty($Failure)) {
   <table id="table" class="table">
     <thead>
       <tr>
-        <th class="wd-10p">Product Code</th>
-        <th class="wd-25p">Product Name</th>
-        <th class="wd-10p">Price</th>
+        <th class="wd-20p">Customer Name</th>
+        <th class="wd-25p">City</th>
+        <th class="wd-10p">Mobile</th>
+        <th class="wd-10p">Email</th>
         <th class="wd-10p"></th>
 
       </tr>
@@ -85,10 +80,11 @@ if (!empty($Failure)) {
 
       while ($row = mysqli_fetch_array($fetched)) {
         echo "<tr>";
-        echo "<td>" . $row['ProductCode'] . "</td>";
-        echo "<td>" . $row['ProductName'] . "</td>";
-        echo "<td>" . $row['Price'] . "</td>";
-        echo "<td><button value='" . $row['PK_ID'] . "' class='btn btn-xs btn-outline-info viewProduct'>View</button></td>";
+        echo "<td>" . $row['CustomerName'] . "</td>";
+        echo "<td>" . $row['City'] . "</td>";
+        echo "<td>" . $row['Mobile'] . "</td>";
+        echo "<td>" . $row['Email'] . "</td>";
+        echo "<td><button value='" . $row['PK_ID'] . "' class='btn btn-xs btn-outline-info viewCustomer'>View</button></td>";
         echo "</tr>";
       }
 
@@ -103,8 +99,8 @@ if (!empty($Failure)) {
 
 <!--Add New Form Start-->
 
-<div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content tx-14">
       <div class="modal-header">
         <h6 class="modal-title" id="exampleModalLabel4">Add New Product</h6>
@@ -115,7 +111,7 @@ if (!empty($Failure)) {
       <div class="modal-body">
 
 
-        <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Products.php" autocomplete="off">
+        <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Customers.php" autocomplete="off">
 
           <?php
 
@@ -131,115 +127,121 @@ if (!empty($Failure)) {
           ?>
 
           <div class="form-group">
-            <label>Product Name</label>
-            <input type="text" required="Product Name is Required" name="ProductName" class="form-control" id="ProductName" placeholder="iPhone, Tea, Sweatshirt.. etc">
+            <label>Customer Name</label>
+            <input type="text" required="Customer Name is Required" name="CustomerName" class="form-control" id="CustomerName" placeholder="Ali Sethi.. etc">
             <?php
 
-            if (isset($_GET['ProductName'])) {
-              $ProductName = $_GET['ProductName'];
-              echo "<span for='error' style='color:red;font-size: 12px;'>$ProductName</span>";
+            if (isset($_GET['CustomerName'])) {
+              $CustomerName = $_GET['CustomerName'];
+              echo "<span for='error' style='color:red;font-size: 12px;'>$CustomerName</span>";
             }
 
             ?>
           </div>
 
+
           <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputEmail4">Price</label><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">PKR</span>
-                </div>
-                <input type="text" name="Price" class="form-control" aria-label="Amount (to the nearest rupee)">
-              </div>
+            <div class="form-group col-md-12">
+              <label>Address</label>
+              <input type="text" required="Address is required" name="Address" class="form-control" placeholder="Suite, Apt..etc">
               <?php
 
-              if (isset($_GET['Price'])) {
-                $Price = $_GET['Price'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$Price</span>";
+              if (isset($_GET['Address'])) {
+                $Address = $_GET['Address'];
+                echo "<span for='error' style='color:red;font-size: 12px;'>$Address</span>";
               }
 
               ?>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="select-category">Category</label><br>
-              <select class="custom-select" name="FK_Category">
-                <option selected>Select Category</option>
-                <?php
-
-                while ($row = mysqli_fetch_array($category)) {
-                  echo "<option value=" . $row['PK_ID'] . ">" . $row['CategoryName'] . "</option>";
-                  echo "<td>" . $row['ProductCode'] . "</td>";
-                }
-
-                ?>
-              </select>
-              <?php
-
-              if (isset($_GET['FK_Category'])) {
-                $FK_Category = $_GET['FK_Category'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$FK_Category</span>";
-              }
-
-              ?>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputEmail4">Company</label><br>
-              <select class="custom-select" name="FK_Company">
-                <option selected>Select Company</option>
-                <?php
-
-                while ($row = mysqli_fetch_array($company)) {
-                  echo "<option value=" . $row['PK_ID'] . ">" . $row['CompanyName'] . "</option>";
-                }
-
-                ?>
-              </select>
-              <?php
-
-              if (isset($_GET['FK_Company'])) {
-                $FK_Company = $_GET['FK_Company'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$FK_Company</span>";
-              }
-
-              ?>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-12">
-                <label for="inputEmail4">Features</label>
-                <input type="text" name="Features" class="form-control" placeholder="Write features if any..">
-                <?php
-
-                if (isset($_GET['Features'])) {
-                  $Features = $_GET['Features'];
-                  echo "<span for='error' style='color:red;font-size: 12px;'>$Features</span>";
-                }
-
-
-                ?>
-              </div>
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="custom-file">
-                    <input type="file" name="Image" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                  </div>
-                  <?php
-
-                  if (isset($_GET['Image'])) {
-                    $Image = $_GET['Image'];
-                    echo "<span for='error' style='color:red;font-size: 12px;'>$Image</span>";
-                  }
-
-                  ?>
-                </div>
-              </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary tx-13" data-dismiss="modal">Close</button>
-            <input name="addProduct" type="submit" class="btn btn-primary tx-13" value="Save">
+
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">State</label><br>
+              <input id="theStates" type="text" required="State is required" name="State" class="form-control" placeholder="State">
+              <?php
+
+              if (isset($_GET['State'])) {
+                $State = $_GET['State'];
+                echo "<span for='error' style='color:red;font-size: 12px;'>$State</span>";
+              }
+
+              ?>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">City</label><br>
+              <input id="theCities" type="text" required="City is required" name="City" class="form-control" placeholder="City">
+              <?php
+
+              if (isset($_GET['City'])) {
+                $City = $_GET['City'];
+                echo "<span for='error' style='color:red;font-size: 12px;'>$City</span>";
+              }
+
+              ?>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">Postal Code</label><br>
+              <input id="PostalCode" type="text" required="Postal Code is required" name="PostalCode" class="form-control" placeholder="PostalCode">
+              <?php
+
+              if (isset($_GET['PostalCode'])) {
+                $PostalCode = $_GET['PostalCode'];
+                echo "<span for='error' style='color:red;font-size: 12px;'>$PostalCode</span>";
+              }
+
+              ?>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">Landmark</label><br>
+              <input id="landmark" type="text" name="Landmark" class="form-control" placeholder="Landmark">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputEmail4">Email</label>
+              <input type="email" name="Email" class="form-control" placeholder="abc@example.com">
+              <?php
+
+              if (isset($_GET['Email'])) {
+                $Email = $_GET['Email'];
+                echo "<span for='error' style='color:red;font-size: 12px;'>$Email</span>";
+              }
+
+              ?>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPassword4">Mobile</label>
+              <input type="phone" required="Mobile is required" name="Mobile" class="form-control" placeholder="Mobile number">
+              <?php
+
+              if (isset($_GET['Mobile'])) {
+                $Mobile = $_GET['Mobile'];
+                echo "<span for='error' style='color:red;font-size: 12px;'>$Mobile</span>";
+              }
+
+              ?>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPassword4">Phone</label>
+              <input type="phone" name="Phone" class="form-control" placeholder="Phone number">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputAddress">Fax</label>
+            <input type="text" name="Fax" class="form-control" id="Fax" placeholder="Fax number">
+          </div>
+
+          <div class="form-group">
+            <label for="inputAddress">Note</label>
+            <input type="text" name="Note" class="form-control" id="Note" placeholder="Any notes..">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary tx-13" data-dismiss="modal">Close</button>
+        <input name="addCustomer" type="submit" class="btn btn-primary tx-13" value="Save">
         </form>
       </div>
     </div>
@@ -280,12 +282,12 @@ if (!empty($alert)) {
 ?>
 <script>
   $(document).ready(function() {
-    $(".viewProduct").click(function() {
+    $(".viewCustomer").click(function() {
       // Get he content from the input box
       var uuid = this.value;
       $.ajax({
         type: "POST",
-        url: "ProductView?uuid=" + uuid,
+        url: "CustomerView?uuid=" + uuid,
         success: function(response) {
           $('#modelForm').empty();
           $('#modelForm').append(response);

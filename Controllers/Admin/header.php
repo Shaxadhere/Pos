@@ -7,7 +7,7 @@ if (isset($_SESSION['USER'])) {
     http_response_code(401);
   }
 } else {
-  redirectWindow("/Pos/auth");
+  redirectWindow("../../auth");
 }
 
 ?>
@@ -21,20 +21,20 @@ if (isset($_SESSION['USER'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="/Pos/assets/template/assets/img/favicon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../..//assets/template/assets/img/favicon.png">
 
   <title></title>
 
   <!-- vendor css -->
-  <link href="/Pos/assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/Pos/assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="/Pos/assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
-  <link href="/Pos/assets/template/lib/select2/css/select2.min.css" rel="stylesheet">
-  <link href="/Pos/assets/searchbox.css" rel="stylesheet">
+  <link href="../..//assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../..//assets/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../..//assets/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+  <link href="../..//assets/template/lib/select2/css/select2.min.css" rel="stylesheet">
+  <link href="../..//assets/searchbox.css" rel="stylesheet">
 
   <!-- DashForge CSS -->
-  <link rel="stylesheet" href="/Pos/assets/template/assets/css/dashforge.css">
-  <link rel="stylesheet" href="/Pos/assets/template/assets/css/dashforge.dashboard.css">
+  <link rel="stylesheet" href="../..//assets/template/assets/css/dashforge.css">
+  <link rel="stylesheet" href="../..//assets/template/assets/css/dashforge.dashboard.css">
 
   <!--datatables-->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -56,7 +56,7 @@ if (isset($_SESSION['USER'])) {
     <div class="aside-body">
       <div class="aside-loggedin">
         <div class="d-flex align-items-center justify-content-start">
-          <a href="#loggedinMenu" data-toggle="collapse" class="avatar"><img src="/Pos/Uploads/avatar.jpg" class="rounded-circle" alt=""></a>
+          <a href="#loggedinMenu" data-toggle="collapse" class="avatar"><img src="../..//Uploads/avatar.jpg" class="rounded-circle" alt=""></a>
         </div>
         <div class="aside-loggedin-user">
           <a href="#loggedinMenu" class="d-flex align-items-center justify-content-between mg-b-2" data-toggle="collapse">

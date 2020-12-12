@@ -298,7 +298,16 @@ getHeader("Dashboard", 'header.php');
 
     <?php
     getFooter('footer.php');
+    if(isset($_REQUEST['Success'])){
+        echo "<script>";
+        echo "$('#toastMsg').html('$_REQUEST[Success]');";
+        echo "$('.toast').toast({delay: 4000});";
+        echo "$('.toast').toast('show');";
+        echo "</script>";
+    }
     ?>
+
+    
     <script>
         //When invoice is empty
         if ($('#itemslist').is(':empty')) {

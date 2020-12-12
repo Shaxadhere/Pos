@@ -337,9 +337,8 @@ function getBrowser() {
  * 
  * @return Bool true or false
  */ 
-function sendMail(string $smtpHost, string $smtpPort, string $smtpEmail, string $smtpPassword, string $smtpProtocol, string $smtpFrom, string $recipient, bool $isHTML, string $subject, string $message){
-    require '../assets/class.phpmailer.php';
-	$mail = new PHPMailer;
+function sendMail(string $smtpHost, string $smtpPort, string $smtpEmail, string $smtpPassword, string $smtpProtocol, string $smtpFrom, string $recipient, bool $isHTML, string $subject, string $message, $phpmailer){
+	$mail = $phpmailer;
 	$mail->IsSMTP();
 	$mail->Host = $smtpHost;
 	$mail->Port = $smtpPort;

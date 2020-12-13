@@ -13,11 +13,11 @@ if(isset($_POST['addStock'])){
     //Empty Strings Check
     if(empty($_POST['ProductCode'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?ProductCode=Product Code is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?ProductCode=Product Code is Required#addnew");
     }
     if(empty($_POST['Quantity'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Quantity=Quantity is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Quantity=Quantity is Required#addnew");
     }
 
     if($status){
@@ -48,12 +48,12 @@ if(isset($_POST['addStock'])){
                 date('d/m/Y h:i:s a', time())
             );
 
-            redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Success=Stock Added Successfully");
+            redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Success=Stock Added Successfully");
         }
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Failure=Internal Server Error");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Failure=Internal Server Error");
     }
 }
 
@@ -63,7 +63,7 @@ if(isset($_POST['editStock'])){
     //Empty Strings Check
     if(empty($_POST['Quantity'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Quantity=Quantity is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Quantity=Quantity is Required#addnew");
     }
     if(empty($_POST['id'])){
         $status = false;
@@ -76,10 +76,10 @@ if(isset($_POST['editStock'])){
             $_POST['Quantity']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Success=Stock Modified Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Success=Stock Modified Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stock?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Stocks?Failure=Internal Server Error");
     }
 }
 

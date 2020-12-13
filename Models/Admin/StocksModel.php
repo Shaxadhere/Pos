@@ -8,6 +8,10 @@ class StockModel{
         return fetchData("tbl_stock", connect());
     }
 
+    function ListStocksWithProduct(){
+        return mysqli_query(connect(), "SELECT tbl_stock.PK_ID, Quantity, tbl_product.ProductCode, tbl_product.ProductName, tbl_product.Price, tbl_product.FK_Category FROM `tbl_stock` inner join tbl_product on tbl_stock.FK_Product = tbl_product.PK_ID where tbl_product.deleted = 0");
+    }
+
     function Add($FK_Product, $Quantity){
         insertData(
             "tbl_stock",
@@ -24,12 +28,7 @@ class StockModel{
     }
 
     function View($id){
-        return fetchDataById(
-            "tbl_stock",
-            "PK_ID",
-            $id,
-            connect()
-        );
+        return mysqli_query(connect(), "SELECT tbl_stock.PK_ID, Quantity, tbl_product.ProductCode, tbl_product.ProductName, tbl_product.Price, tbl_product.FK_Category FROM `tbl_stock` inner join tbl_product on tbl_stock.FK_Product = tbl_product.PK_ID where tbl_product.deleted = 0 and tbl_stock.PK_ID = $id");
     }
 
     function Edit($id, $Quantity){

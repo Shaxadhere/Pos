@@ -43,8 +43,6 @@ if (!validatePlainText($_REQUEST['CustomerName'])) {
     $errors['CustomerName'] = "Customer name can only contain letters and spaces";
 }
 
-$error = "";
-
 if ($status) {
     $CustomerModel->Add(
         $_REQUEST['CustomerName'],
@@ -59,7 +57,6 @@ if ($status) {
         $_REQUEST['Mobile'],
         $_REQUEST['Note']
     );
-    $error = "Customer added";
 }
 
 

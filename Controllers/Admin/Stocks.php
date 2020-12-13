@@ -1,11 +1,11 @@
 <?php
 include_once('../../config.php');
-include_once('../../Models/Admin/CustomersModel.php');
-getHeader("Cutomers", "header.php");
+include_once('../../Models/Admin/StocksModel.php');
+getHeader("Stocks", "header.php");
 
-$model = new CustomersModel();
+$model = new StockModel();
 
-$fetched = $model->List();
+$fetched = $model->ListStocksWithProduct();
 
 
 $error = "";
@@ -21,7 +21,7 @@ if (isset($_GET['error'])) {
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-style1 mg-b-10">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Customers</li>
+        <li class="breadcrumb-item active" aria-current="page">Stocks</li>
       </ol>
     </nav>
     <h4 class="mg-b-0 tx-spacing--1">Welcome to Dashboard</h4>
@@ -29,7 +29,7 @@ if (isset($_GET['error'])) {
 </div>
 
 
-<h5 id="section4" class="mg-b-10">Customers</h5>
+<h5 id="section4" class="mg-b-10">Manage Stocks</h5>
 
 
 <?php
@@ -58,7 +58,7 @@ if (!empty($Failure)) {
 
 ?>
 
-<a href="#addnew" data-toggle="modal" class="btn btn-sm btn-outline-primary">Add New Customer</a>
+<a href="Products" class="btn btn-sm btn-outline-primary">Add New Product</a>
 
 <br><br>
 
@@ -67,10 +67,10 @@ if (!empty($Failure)) {
   <table id="table" class="table">
     <thead>
       <tr>
-        <th class="wd-20p">Customer Name</th>
-        <th class="wd-25p">City</th>
-        <th class="wd-10p">Mobile</th>
-        <th class="wd-10p">Email</th>
+        <th class="wd-20p">Product Code</th>
+        <th class="wd-25p">Product Name</th>
+        <th class="wd-10p">Price</th>
+        <th class="wd-10p">Quantity</th>
         <th class="wd-10p"></th>
 
       </tr>
@@ -80,11 +80,11 @@ if (!empty($Failure)) {
 
       while ($row = mysqli_fetch_array($fetched)) {
         echo "<tr>";
-        echo "<td>" . $row['CustomerName'] . "</td>";
-        echo "<td>" . $row['City'] . "</td>";
-        echo "<td>" . $row['Mobile'] . "</td>";
-        echo "<td>" . $row['Email'] . "</td>";
-        echo "<td><button value='" . $row['PK_ID'] . "' class='btn btn-xs btn-outline-info viewCustomer'>View</button></td>";
+        echo "<td>" . $row['ProductCode'] . "</td>";
+        echo "<td>" . $row['ProductName'] . "</td>";
+        echo "<td>" . $row['Price'] . "</td>";
+        echo "<td>" . $row['Quantity'] . "</td>";
+        echo "<td><button value='" . $row['PK_ID'] . "' class='btn btn-xs btn-outline-info editStock'>View</button></td>";
         echo "</tr>";
       }
 
@@ -94,161 +94,6 @@ if (!empty($Failure)) {
 </div>
 
 <!--Table End-->
-
-
-
-<!--Add New Form Start-->
-
-<div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content tx-14">
-      <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel4">Add New Product</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-        <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Customers.php" autocomplete="off">
-
-          <?php
-
-          if (isset($_GET['error'])) {
-            $error = $_GET['error'];
-          }
-
-          if (!empty($error)) {
-            echo "<span for='error' style='color:red'>$error</span>";
-            echo "<br>";
-          }
-
-          ?>
-
-          <div class="form-group">
-            <label>Customer Name</label>
-            <input type="text" required="Customer Name is Required" name="CustomerName" class="form-control" id="CustomerName" placeholder="Ali Sethi.. etc">
-            <?php
-
-            if (isset($_GET['CustomerName'])) {
-              $CustomerName = $_GET['CustomerName'];
-              echo "<span for='error' style='color:red;font-size: 12px;'>$CustomerName</span>";
-            }
-
-            ?>
-          </div>
-
-
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <label>Address</label>
-              <input type="text" required="Address is required" name="Address" class="form-control" placeholder="Suite, Apt..etc">
-              <?php
-
-              if (isset($_GET['Address'])) {
-                $Address = $_GET['Address'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$Address</span>";
-              }
-
-              ?>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="inputEmail4">State</label><br>
-              <input id="theStates" type="text" required="State is required" name="State" class="form-control" placeholder="State">
-              <?php
-
-              if (isset($_GET['State'])) {
-                $State = $_GET['State'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$State</span>";
-              }
-
-              ?>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputEmail4">City</label><br>
-              <input id="theCities" type="text" required="City is required" name="City" class="form-control" placeholder="City">
-              <?php
-
-              if (isset($_GET['City'])) {
-                $City = $_GET['City'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$City</span>";
-              }
-
-              ?>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputEmail4">Postal Code</label><br>
-              <input id="PostalCode" type="text" required="Postal Code is required" name="PostalCode" class="form-control" placeholder="PostalCode">
-              <?php
-
-              if (isset($_GET['PostalCode'])) {
-                $PostalCode = $_GET['PostalCode'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$PostalCode</span>";
-              }
-
-              ?>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputEmail4">Landmark</label><br>
-              <input id="landmark" type="text" name="Landmark" class="form-control" placeholder="Landmark">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputEmail4">Email</label>
-              <input type="email" name="Email" class="form-control" placeholder="abc@example.com">
-              <?php
-
-              if (isset($_GET['Email'])) {
-                $Email = $_GET['Email'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$Email</span>";
-              }
-
-              ?>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputPassword4">Mobile</label>
-              <input type="phone" required="Mobile is required" name="Mobile" class="form-control" placeholder="Mobile number">
-              <?php
-
-              if (isset($_GET['Mobile'])) {
-                $Mobile = $_GET['Mobile'];
-                echo "<span for='error' style='color:red;font-size: 12px;'>$Mobile</span>";
-              }
-
-              ?>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputPassword4">Phone</label>
-              <input type="phone" name="Phone" class="form-control" placeholder="Phone number">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputAddress">Fax</label>
-            <input type="text" name="Fax" class="form-control" id="Fax" placeholder="Fax number">
-          </div>
-
-          <div class="form-group">
-            <label for="inputAddress">Note</label>
-            <input type="text" name="Note" class="form-control" id="Note" placeholder="Any notes..">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary tx-13" data-dismiss="modal">Close</button>
-        <input name="addCustomer" type="submit" class="btn btn-primary tx-13" value="Save">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Add New Form Ends-->
 
 
 <div id="modelForm"></div>
@@ -282,12 +127,12 @@ if (!empty($alert)) {
 ?>
 <script>
   $(document).ready(function() {
-    $(".viewCustomer").click(function() {
+    $(".editStock").click(function() {
       // Get he content from the input box
       var uuid = this.value;
       $.ajax({
         type: "POST",
-        url: "CustomerView?uuid=" + uuid,
+        url: "StockEdit?uuid=" + uuid,
         success: function(response) {
           $('#modelForm').empty();
           $('#modelForm').append(response);

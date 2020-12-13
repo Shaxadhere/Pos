@@ -15,7 +15,7 @@ include_once('../config.php');
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../assets/template/assets/img/favicon.png">
 
-    <title>Link Expired - Point Of Sale</title>
+    <title>Email Sent - Point Of Sale</title>
 
     <!-- vendor css -->
     <link href="../assets/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">

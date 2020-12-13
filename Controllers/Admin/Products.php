@@ -164,7 +164,7 @@ if (!empty($Failure)) {
             <div class="form-group col-md-4">
               <label for="select-category">Category</label><br>
               <select class="custom-select" name="FK_Category">
-                <option selected>Select Category</option>
+                <option selected value="8">Select Category</option>
                 <?php
 
                 while ($row = mysqli_fetch_array($category)) {
@@ -186,7 +186,7 @@ if (!empty($Failure)) {
             <div class="form-group col-md-4">
               <label for="inputEmail4">Company</label><br>
               <select class="custom-select" name="FK_Company">
-                <option selected>Select Company</option>
+                <option selected value="5">Select Company</option>
                 <?php
 
                 while ($row = mysqli_fetch_array($company)) {

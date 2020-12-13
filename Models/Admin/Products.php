@@ -1,7 +1,7 @@
 <?php
 
 include_once('../../config.php');
-include_once('ProductModel.php');
+include_once('ProductsModel.php');
 include_once('StocksModel.php');
 
 
@@ -13,27 +13,27 @@ if(isset($_POST['addProduct'])){
     //Empty Strings Check
     if(empty($_POST['ProductName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?ProductName=Product Name is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?ProductName=Product Name is Required#addnew");
     }
     if(empty($_POST['Price'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Price=Price is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Price=Price is Required#addnew");
     }
     
     //Validating Input
     if(!validatePlainText($_POST['ProductName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?ProductName=Product name can only contain letters and spaces#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?ProductName=Product name can only contain letters and spaces#addnew");
     }
 
     $productCode = generateProductCode();
 
-    while (!checkExistance("tbl_product", "ProductCode", $productCode, connect())) {
+    while (checkExistance("tbl_product", "ProductCode", $productCode, connect())) {
         $productCode = generateProductCode(6);
     }
 
     if($status){
-        $model->Add(
+        echo $model->Add(
             $productCode,
             $_POST['ProductName'],
             $_POST['Price'],
@@ -53,7 +53,7 @@ if(isset($_POST['addProduct'])){
         );
 
         $validProduct = mysqli_fetch_array($verifyProductCode);
-        $productId = $validProduct['PK_ID'];
+        $productId = $validProduct[0];
         $stockModel = new StockModel();
 
         $stockModel->Add(
@@ -61,10 +61,10 @@ if(isset($_POST['addProduct'])){
             0
         );
 
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Success=Product Added Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Success=Product Added Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Failure=Internal Server Error");
     }
 }
 
@@ -74,18 +74,18 @@ if(isset($_POST['editProduct'])){
     //Empty Strings Check
     if(empty($_POST['ProductName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?ProductName=Product Name is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?ProductName=Product Name is Required#addnew");
     }
 
     if(empty($_POST['Price'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Price=Price is Required#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Price=Price is Required#addnew");
     }
     
     //Validating Input
     if(!validatePlainText($_POST['ProductName'])){
         $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?ProductName=Product name can only contain letters and spaces#addnew");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?ProductName=Product name can only contain letters and spaces#addnew");
     }
     
     if($status){
@@ -99,10 +99,10 @@ if(isset($_POST['editProduct'])){
             $_POST['Features']
         );
     
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Success=Product Modified Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Success=Product Modified Successfully");
     }
     else{
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Failure=Internal Server Error");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Failure=Internal Server Error");
     }
 }
 
@@ -115,7 +115,7 @@ if(isset($_POST['deleteProduct'])){
     }
     if($status){
         $model->Delete($_POST['id']);
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Product?Success=Product Deleted Successfully");
+        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?Success=Product Deleted Successfully");
     }
 }
 

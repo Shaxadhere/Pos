@@ -101,7 +101,7 @@ function insertData(string $table,array $fields,array $values,$conn){
  * 
  */ 
 function fetchData(string $table, $conn){
-    $query = "select * from `".$table."`";
+    $query = "select * from `".$table."` ORDER BY `PK_ID` DESC";
     return mysqli_query($conn, $query);
 }
 
@@ -281,7 +281,7 @@ function verifyValues(string $table, array $data, $conn){
         $mm--;
     }
  
-    $query = "SELECT * FROM `$table` WHERE $ini";
+    $query = "SELECT * FROM `$table` WHERE $ini  ORDER BY `PK_ID` DESC";
     $res = mysqli_query($conn, $query);
     if (!$res) {
         printf("Error: %s\n", mysqli_error($conn));

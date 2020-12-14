@@ -1,7 +1,7 @@
 <?php
 
 include_once('../../config.php');
-include_once('StockModel.php');
+include_once('StocksModel.php');
 include_once('PurchaseModel.php');
 
 

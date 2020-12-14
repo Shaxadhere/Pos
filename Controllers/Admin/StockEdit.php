@@ -39,6 +39,8 @@ if (isset($_GET['uuid'])) {
         vertical-align: middle;
     }
 </style>
+
+<form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Stock.php" id="editStockForm">
 <div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-14">
@@ -50,50 +52,49 @@ if (isset($_GET['uuid'])) {
             </div>
             <div class="modal-body">
                 <div class="card">
-                    <form method="post" action="<?= $_HTMLROOTURI ?>/Models/Admin/Stock.php">
-                
-                    <div class="card-body">
-                        <div class="row">
-                            <input type="hidden" value="<?= $stock[0]?>" name="id">
+                   
 
-                            <div class='col-md-6'>
-                                <h6>Product Code:</h6>
-                                <p><?= $stock[2] ?></p>
-                            </div>
-                            <div class='col-md-6'>
-                                <h6>Product Name:</h6>
-                                <p><?= $stock[3] ?></p>
-                            </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <input type="hidden" value="<?= $stock[0] ?>" name="id">
 
-                            <div class='col-md-6'>
-                                <h6>Price:</h6>
-                                <p><?= $stock[4] ?></p>
-                            </div>
+                                <div class='col-md-6'>
+                                    <h6>Product Code:</h6>
+                                    <p><?= $stock[2] ?></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <h6>Product Name:</h6>
+                                    <p><?= $stock[3] ?></p>
+                                </div>
 
-                            <div class='col-md-6'>
-                                <h6>Quantity:</h6>
-                                <div class="number">
-                                <span class="minus">-</span>
-                                <input type="number" value="<?= $stock[1] ?>" min="<?= $stock[1] ?>" name="Quantity"/>
-                                <span class="plus">+</span>
-                            </div>
-                            </div>
+                                <div class='col-md-6'>
+                                    <h6>Price:</h6>
+                                    <p><?= $stock[4] ?></p>
+                                </div>
 
-                           
+                                <div class='col-md-6'>
+                                    <h6>Quantity:</h6>
+                                    <div class="number">
+                                        <span class="minus">-</span>
+                                        <input type="number" value="<?= $stock[1] ?>" min="<?= $stock[1] ?>" name="Quantity" />
+                                        <span class="plus">+</span>
+                                    </div>
+                                </div>
 
+
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" value="<?= $stock[0] ?>" class="btn btn-secondary tx-13" data-dismiss="modal">Close</button>
-                <button type="submit" value="<?= $stock[0] ?>" class="btn btn-primary tx-13" name="editStock">Save</button>
-                </form>
+                <button type="button" class="btn btn-secondary tx-13" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary tx-13" name="editStock" value="Save">
+                
             </div>
         </div>
     </div>
 </div>
-
+</form>
 <script>
     $(document).ready(function() {
         $('#viewDetails').modal('show');

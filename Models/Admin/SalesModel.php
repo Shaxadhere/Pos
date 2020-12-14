@@ -4,7 +4,7 @@
 class SalesModel{
 
     function List(){
-        $query = "select tbl_sales.PK_ID, TotalBill, CustomerName, DateAdded, Mobile, City from tbl_sales inner join tbl_customer on tbl_sales.CustomerID = tbl_customer.PK_ID";
+        $query = "select tbl_sales.PK_ID, TotalBill, CustomerName, DateAdded, Mobile, City from tbl_sales inner join tbl_customer on tbl_sales.CustomerID = tbl_customer.PK_ID ORDER BY tbl_sales.PK_ID DESC";
         return mysqli_query(connect(), $query);
     }
 

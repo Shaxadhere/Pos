@@ -31,11 +31,16 @@ $row = "<li class='list-group-item d-flex align-items-center'>".
 "</div>".
 "<div class='col-md-3 increase-decrease'>".
 "<div class='row' style='font-size:16px'>".
-"<input class='form-control input-sm qtys' type='number' value='1' min='1' name='productQtys[]'/>".
+"<div class='number'>". 
+"<span class='minus'>-</span>". 
+"<input type='number' value='1' min='1' name='Quantity'>". 
+"<span class='plus'>+</span>".
+"<input type='hidden' class='unitPrice' value='$product[Price]'>".
+"<span class='prices' style='padding:30px; font-size:15px' text='".$product['Price']."'>".$product['Price']."</span>".
+"</div>".
 "</div>".
 "</div>".
 "<div class='col-md-3'>".
-"<span class='prices' style='padding:30px; font-size:15px' value='".$product['Price']."'>".$product['Price']."</span>".
 "</div>".
 "</div>".
 "</li>";

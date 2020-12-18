@@ -21,10 +21,10 @@ if(isset($_POST['addProduct'])){
     }
     
     //Validating Input
-    if(!validatePlainText($_POST['ProductName'])){
-        $status = false;
-        redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?ProductName=Product name can only contain letters and spaces#addnew");
-    }
+    // if(!validatePlainText($_POST['ProductName'])){
+    //     $status = false;
+    //     redirectWindow("$_HTMLROOTURI/Controllers/Admin/Products?ProductName=Product name can only contain letters and spaces#addnew");
+    // }
 
     $productCode = generateProductCode();
 

@@ -42,8 +42,38 @@ getHeader("Dashboard", 'header.php');
         box-shadow: unset !Important;
     }
 
+    .single-prod-detail div {
+        display: inline-block;
+        margin: 0 40px;
+        text-align: center;
+    }
+
+    li.type-some-txt {
+        padding: 10px 12px;
+        text-transform: capitalize;
+        color: #000;
+    }
+
+    /*ul#searchProductResults li {
+    background: linear-gradient(45deg, #031d6b, #1071fa);
+    border-bottom: 1px solid #fff;
+}*/
+    li.searchresultitem a {
+        color: #000 !IMPORTANT;
+        text-shadow: unset !important;
+    }
+
     button.pro-name span {
         font-size: 18px !IMPORTANT;
+    }
+
+    .number span.prices {
+        padding: 7px 23px !important;
+    }
+
+    .number .minus,
+    .number .plus {
+        padding: 4px 5px 8px 5px !Important;
     }
 
     .search {
@@ -55,6 +85,34 @@ getHeader("Dashboard", 'header.php');
     .search input {
         height: 37px !important;
         background: white url(https://cssdeck.com/uploads/media/items/5/5JuDgOa.png) 8px 12px no-repeat !important;
+    }
+
+    .number input {
+        height: 34px;
+        width: 100px;
+        text-align: center;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .number .minus,
+    .number .plus {
+        width: 20px;
+        height: 33px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 8px 5px 8px 5px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .increase-decrease .number {
+        display: flex;
     }
 </style>
 
@@ -221,7 +279,7 @@ getHeader("Dashboard", 'header.php');
         <div class="search">
             <input type="text" id="searchProduct" name="searchProduct" placeholder="Search..." class="form-control" />
             <ul class="results" id="searchProductResults">
-                <li>type something..</li>
+                <li class="type-some-txt">Type something..</li>
             </ul>
         </div>
         </section>
@@ -237,7 +295,7 @@ getHeader("Dashboard", 'header.php');
                     <span style="font-weight:bold">QTY</span>
                 </div>
                 <div class="col-md-3">
-                    <span style="font-weight:bold">Unit Price</span>
+                    <span style="font-weight:bold">Price</span>
                 </div>
 
             </div>
@@ -298,7 +356,7 @@ getHeader("Dashboard", 'header.php');
 
     <?php
     getFooter('footer.php');
-    if(isset($_REQUEST['Success'])){
+    if (isset($_REQUEST['Success'])) {
         echo "<script>";
         echo "$('#toastMsg').html('$_REQUEST[Success]');";
         echo "$('.toast').toast({delay: 4000});";
@@ -307,8 +365,61 @@ getHeader("Dashboard", 'header.php');
     }
     ?>
 
-    
+
     <script>
+        $(document).on('change', '.number', function() {
+
+            var qty = $(this).find('input').val();
+            var unitPrice = $(this).parent().find('.unitPrice').val();
+        
+            var priceLabel = $(this).parent().find('.prices').html();
+            var newPrice = parseInt(qty) * parseInt(unitPrice);
+            $(this).parent().find('.prices').html(newPrice)
+
+            var prices = $('.prices').map(function() {
+                return $(this).html();
+            }).get();
+
+
+            $.ajax({
+                type: "POST",
+                url: "QtyUpdate?Prices=" + prices,
+                success: function(response) {
+                    $('#empty').empty();
+                    $('#zeroProductsError').empty();
+                    var res = JSON.parse(response);
+
+                    $('#totalpricelabel').html("PKR " + res[0] + ".00");
+                    $('#gst').html("PKR " + res[2] + ".00");
+                    $('#totalbilllabel').html("PKR " + res[1] + ".00");
+                },
+                error: function(e) {
+                    alert(e);
+                }
+            })
+
+            
+        });
+
+        $(document).on("click", ".plus", function() {
+            // $('.plus').click(function() {
+            var $input = $(this).parent().find('input');
+            $input.val(parseInt($input.val()) + 1);
+            $input.change();
+            return false;
+        });
+
+        $(document).on("click", ".minus", function() {
+            // $('.minus').click(function() {
+            var $input = $(this).parent().find('input');
+            var count = parseInt($input.val()) - 1;
+            count = count < 1 ? 1 : count;
+            $input.val(count);
+            $input.change();
+            return false;
+        });
+
+
         //When invoice is empty
         if ($('#itemslist').is(':empty')) {
             $('#itemslist').append(

@@ -3,8 +3,16 @@
 include_once('config.php');
 include_once('Models/PosModel.php');
 
-$model = new POSModel();
-$Customer = $model->fetchLastCustomer();
-echo json_encode($Customer)
+echo (fetchDataLike(
+    "tbl_product",
+    array(
+        "ProductName",
+        "IP",
+        "ProductCode",
+        "dasda"
+    ),
+    5,
+    connect()
+));
 
 ?>

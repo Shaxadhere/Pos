@@ -27,13 +27,13 @@ $row = "<li class='list-group-item d-flex align-items-center'>".
 "<div class='col-md-6'>".
 "<input type='hidden' class='productIds' value='".$product['PK_ID']."' name='productIds[]'>".
 "<h6 class='tx-13 tx-inverse tx-semibold mg-b-0'>".$product['ProductName']."</h6>".
-"<span class='d-block tx-11 text-muted'>Category / Company</span>".
+"<span class='d-block tx-11 text-muted'>General / No Company</span>".
 "</div>".
 "<div class='col-md-3 increase-decrease'>".
 "<div class='row' style='font-size:16px'>".
 "<div class='number'>". 
 "<span class='minus'>-</span>". 
-"<input type='number' value='1' min='1' name='Quantity'>". 
+"<input class='qtys' type='number' value='1' min='1' name='Quantity'>". 
 "<span class='plus'>+</span>".
 "<input type='hidden' class='unitPrice' value='$product[Price]'>".
 "<span class='prices' style='padding:30px; font-size:15px' text='".$product['Price']."'>".$product['Price']."</span>".

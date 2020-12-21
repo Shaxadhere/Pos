@@ -11,6 +11,7 @@ function connect(){
     $data = "db_pos";
     $connection = mysqli_connect($server, $usr, $pass, $data) or die("failed to connect to database");
     return ($connection);
+
 }
 
 include_once('assets/phprapid/rapid.php');

@@ -100,8 +100,7 @@ $result = array(
     $totalPrice,
     $returnPrice,
     $gst,
-    $totalBill,
-    $error
+    $totalBill
 );
 echo json_encode($result);
 
